@@ -1,0 +1,325 @@
+.page-heading h2 {
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 30px;
+    margin: 40px auto 30px;
+    text-align: center;
+}
+
+.page-heading h2 span {
+    border-bottom: 2px solid #000;
+    padding-bottom: 15px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.row {
+    display: flex;
+}
+
+.questionnaire-card-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+}
+
+.search {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 80%;
+    margin-bottom: 30px;
+    align-items: flex-end;
+}
+
+.search-input {
+    width: 50%;
+    padding: 5px;
+    padding-left: 15px;
+    height: 40px;
+    font-size: 16px;
+    margin: 0;
+    outline: none;
+    border-radius: 5px;
+    letter-spacing: 1px;
+}
+
+.search-btn {
+    background-color: transparent;
+    height: 42px;
+    border: none;
+    float: center;
+    font-weight: bold;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    padding: 0px 40px;
+    font-size: 12px;
+    border-radius: 10px;
+    text-align: center;
+    outline: none;
+    cursor: pointer;
+}
+
+.search-btn:hover {
+    scale: 1.1;
+    color: #fff;
+    background-color: var(--primary);
+    transition: 0.4s;
+}
+
+.create-btn {
+    background-color: transparent;
+    align-items: center;
+    height: 42px;
+    border: none;
+    float: center;
+    font-weight: bold;
+    color: var(--pink);
+    border: 1px solid var(--pink);
+    padding: 0px 40px;
+    font-size: 12px;
+    border-radius: 10px;
+    text-align: center;
+    outline: none;
+    cursor: pointer;
+}
+
+.create-btn:hover {
+    scale: 1.1;
+    color: #fff;
+    background-color: var(--pink);
+    transition: 0.4s;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .search {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 80%;
+        margin-bottom: 30px;
+        align-items: center;
+    }
+
+    .search-input {
+        width: 100%;
+    }
+
+    .create-btn,
+    .search-btn {
+        width: 80%;
+    }
+}
+
+
+.primary-btn {
+    background-color: var(--primary);
+    border: none;
+    float: center;
+    color: #fff;
+    padding: 10px 55px;
+    font-size: 22px;
+    border-radius: 20px;
+    margin: 10px auto;
+    text-align: center;
+    outline: none;
+    cursor: pointer;
+}
+
+.primary-btn:hover {
+    scale: 1.1;
+    border: 1px solid var(--primary);
+    background-color: transparent;
+    color: var(--primary);
+    transition: 0.4s;
+}
+
+.white-btn {
+    background-color: white;
+    border: none;
+    float: center;
+    color: #000;
+    padding: 10px 25px;
+    font-size: 22px;
+    border-radius: 20px;
+    margin: 10px auto;
+    text-align: center;
+    outline: none;
+    cursor: pointer;
+}
+
+.white-btn:hover {
+    scale: 1.1;
+    border: 2px solid white;
+    font-weight: bold;
+    background-color: transparent;
+    color: white;
+    transition: 0.4s;
+}
+
+.font-64 {
+    font-size: 64px;
+}
+
+.small-primary-btn {
+    background-color: transparent;
+    border: none;
+    float: center;
+    font-weight: bold;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    padding: 10px 25px;
+    font-size: 12px;
+    border-radius: 10px;
+    margin: 10px;
+    text-align: center;
+    outline: none;
+    cursor: pointer;
+}
+
+.medium-primary-btn {
+    background-color: transparent;
+    border: none;
+    float: center;
+    font-weight: bold;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    padding: 10px 25px;
+    font-size: 18px;
+    border-radius: 10px;
+    margin: 10px;
+    margin-top: 30px;
+    text-align: center;
+    outline: none;
+    cursor: pointer;
+}
+
+.small-primary-btn:hover,
+.medium-primary-btn:hover {
+    scale: 1.1;
+    color: #fff;
+    background-color: var(--primary);
+    transition: 0.4s;
+}
+
+.dark-primary-small-btn {
+    background-color: transparent;
+    border: none;
+    float: center;
+    font-weight: bold;
+    color: var(--primary-dark);
+    border: 1px solid var(--primary-dark);
+    padding: 10px 25px;
+    font-size: 12px;
+    border-radius: 10px;
+    margin: 10px;
+    text-align: center;
+    outline: none;
+    cursor: pointer;
+}
+
+.dark-primary-small-btn:hover {
+    color: #fff;
+    background-color: var(--primary-dark);
+    scale: 1.08;
+    transition: 0.4s;
+}
+
+.pink-btn {
+    background-color: transparent;
+    border: none;
+    float: center;
+    font-weight: bold;
+    color: var(--pink);
+    border: 1px solid var(--pink);
+    padding: 10px 25px;
+    font-size: 12px;
+    border-radius: 10px;
+    margin: 10px;
+    text-align: center;
+    outline: none;
+    cursor: pointer;
+}
+
+.pink-btn:hover {
+    color: #fff;
+    background-color: var(--pink);
+    transition: 0.4s;
+}
+
+.dark-primary-btn {
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+    color: var(--primary-dark);
+    border: 1px solid var(--primary-dark);
+    padding: 10px 25px;
+    font-size: 1rem;
+    margin: auto;
+    border-radius: 10px;
+    text-align: center;
+    outline: none;
+    cursor: pointer;
+}
+
+.dark-primary-btn:hover {
+    color: #fff;
+    background-color: var(--primary-dark);
+    transition: 0.4s;
+}
+
+.purple-btn {
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+    color: var(--purple);
+    border: 1px solid var(--purple);
+    padding: 10px 25px;
+    font-size: 12px;
+    border-radius: 10px;
+    margin: 10px;
+    text-align: center;
+    outline: none;
+    cursor: pointer;
+}
+
+.purple-btn:hover {
+    color: #fff;
+    background-color: var(--purple);
+    transition: 0.4s;
+}
+
+.green-btn {
+    background-color: transparent;
+    border: none;
+    float: center;
+    font-weight: bold;
+    color: var(--green);
+    border: 1px solid var(--green);
+    padding: 10px 25px;
+    font-size: 12px;
+    border-radius: 10px;
+    margin: 10px;
+    text-align: center;
+    outline: none;
+    cursor: pointer;
+}
+
+.green-btn:hover {
+    color: #fff;
+    background-color: var(--green);
+    transition: 0.4s;
+}

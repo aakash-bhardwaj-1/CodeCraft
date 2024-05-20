@@ -1,0 +1,158 @@
+.nav-logo {
+    display: flex;
+    justify-content: space-between;
+    margin: 8px 0;
+}
+
+#nav {
+    display: flex;
+    flex-direction: column;
+    padding-left: 10%;
+    padding-right: 10%;
+    -webkit-box-shadow: 0 4px 6px -6px #222;
+    -moz-box-shadow: 0 4px 6px -6px #222;
+    box-shadow: 4px 6px 4px -6px #222;
+    font-family: "Lato", sans-serif;
+}
+
+#logo {
+    max-width: 60px;
+    height: 60px;
+    margin: 0;
+    padding: 0;
+}
+
+#nav ul {
+    text-align: center;
+    margin: 0px 15px;
+    display: none;
+}
+
+#nav ul li {
+    background: #fafafa;
+    padding: 15px;
+}
+
+
+.nav-item {
+    color: var(--primary);
+    font-size: 18px;
+    padding: 0px 10px;
+    text-transform: uppercase;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+}
+
+.nav-item:hover {
+    /* color: var(--primary-hover); */
+    font-weight: 800;
+    /* transition: 0.1s; */
+}
+
+.nav-heading>span {
+    color: var(--primary);
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.nav-heading>span:hover {
+    color: var(--primary-hover);
+}
+
+
+.hide {
+    display: none;
+}
+
+.nav-heading {
+    font-size: 26px;
+    font-family: arial;
+    font-weight: bolder;
+    align-items: center;
+    display: flex;
+    gap: 7px;
+    margin-left: 15px;
+}
+
+
+.hamburger {
+    display: flex;
+    color: white;
+    gap: 20px;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.hamburger .fa-bars {
+    padding: 0.5em;
+    background: var(--primary-hover);
+    color: #fff;
+    border-radius: 3px;
+}
+
+.new-nav {
+    position: fixed;
+    width: 100vw;
+    z-index: 10 !important;
+    background: #fff;
+}
+
+@media screen and (min-width: 995px) {
+    #nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #nav ul {
+        display: flex !important;
+    }
+
+    #nav ul li {
+        background: none;
+        color: #000;
+    }
+
+    .hamburger {
+        display: none;
+    }
+
+    .nav-links {
+        align-items: center;
+        text-align: center;
+        display: inherit;
+        color: black;
+        margin-left: 20px;
+        font-size: 1.55rem;
+    }
+
+    .content {
+        padding-left: 10%;
+    }
+
+    .text-content>h1 {
+        width: 540px;
+        font-size: 50px;
+        font-weight: 300;
+        font-family: "Raleway", sans-serif;
+        margin-bottom: 20px;
+        line-height: 55px;
+    }
+}
+
+
+@media only screen and (max-width: 600px) {
+    .nav-item {
+        color: var(--primary);
+        text-align: center;
+        padding: 10px;
+    }
+
+    .nav-heading {
+        color: var(--primary);
+    }
+}
