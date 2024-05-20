@@ -1,9 +1,5 @@
 pipeline {
-    environment {
-        // DOCKERHUB_CREDENTIALS = credentials('DockerHubCred')
-        // MYSQL_CREDENTIALS = credentials('MySqlCred')
-        
-    }
+
     agent any
     options {
         // Timeout counter starts AFTER agent is allocated
