@@ -1,7 +1,7 @@
 pipeline {
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('DockerHubCred')
-        MYSQL_CREDENTIALS = credentials('MySqlCred')
+        // DOCKERHUB_CREDENTIALS = credentials('DockerHubCred')
+        // MYSQL_CREDENTIALS = credentials('MySqlCred')
         
     }
     agent any
