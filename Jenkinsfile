@@ -44,7 +44,7 @@ pipeline {
                     steps {
                         echo 'Building User Service'
                         //username and password are provided for integration testing of server with mysql otherwise, no requirement
-                        sh "cd UserService && mvn clean install -DSPRING_DATASOURCE_USERNAME=${MYSQL_CREDENTIALS_USR} -DSPRING_DATASOURCE_PASSWORD=${MYSQL_CREDENTIALS_PSW}"
+                        sh "cd UserService && mvn clean install"
                         sh 'mv -f CandidateMicroservice/target/CandidateMicroservice-0.0.1-SNAPSHOT.jar JarFiles/'
                     }
                 }
@@ -54,7 +54,7 @@ pipeline {
                     steps {
                         echo 'Building Account Service'
                         //username and password are provided for integration testing of server with mysql otherwise, no requirement
-                        sh "cd AccountService && mvn clean install -DSPRING_DATASOURCE_USERNAME=${MYSQL_CREDENTIALS_USR} -DSPRING_DATASOURCE_PASSWORD=${MYSQL_CREDENTIALS_PSW}"
+                        sh "cd AccountService && mvn clean install"
                         sh 'mv -f InterviewerMicroservice/target/InterviewerMicroservice-0.0.1-SNAPSHOT.jar JarFiles/'
                     }
                 }
