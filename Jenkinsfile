@@ -40,7 +40,7 @@ pipeline {
                     steps {
                         echo 'Building Candidate Service'
                         //username and password are provided for integration testing of server with mysql otherwise, no requirement
-                        sh "cd UserService && mvn clean install"
+                        sh "cd CandidateMicroservice && mvn clean install"
                         sh 'mv -f CandidateMicroservice/target/CandidateMicroservice-0.0.1-SNAPSHOT.jar JarFiles/'
                     }
                 }
@@ -50,7 +50,7 @@ pipeline {
                     steps {
                         echo 'Building Interviewer Service'
                         //username and password are provided for integration testing of server with mysql otherwise, no requirement
-                        sh "cd AccountService && mvn clean install"
+                        sh "cd InterviewerMicroservice && mvn clean install"
                         sh 'mv -f InterviewerMicroservice/target/InterviewerMicroservice-0.0.1-SNAPSHOT.jar JarFiles/'
                     }
                 }
