@@ -2,8 +2,7 @@ pipeline {
     environment {
         DOCKERHUB_CREDENTIALS = credentials('DockerHubCred')
         MYSQL_CREDENTIALS = credentials('MySqlCred')
-        MYSQL_CREDENTIALS_USR = MYSQL_CREDENTIALS_USR.split(':')[0] // Extract username
-        MYSQL_CREDENTIALS_PSW = MYSQL_CREDENTIALS_USR.split(':')[1] // Extract password
+        
     }
     agent any
     options {
