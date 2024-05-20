@@ -14,7 +14,7 @@ pipeline {
 
          stage('Clone repository') {
             steps {
-                git branch: 'master', url: 'https://github.com/Elysian01/CodeCraft-Technical-Skills-Evaluation-Hub.git'
+                git branch: 'main', url: 'https://github.com/aakash-bhardwaj-1/CodeCraft.git'
             }
         }
 
