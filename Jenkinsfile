@@ -1,10 +1,6 @@
 pipeline {
 
     agent any
-    options {
-        // Timeout counter starts AFTER agent is allocated
-        timeout(time: 1, unit: 'SECONDS')
-    }
     stages {
 
          stage('Clone repository') {
@@ -46,7 +42,7 @@ pipeline {
                 }
 
 
-                stage('Account Service') {
+                stage('Interviewer Service') {
                     steps {
                         echo 'Building Interviewer Service'
                         //username and password are provided for integration testing of server with mysql otherwise, no requirement
