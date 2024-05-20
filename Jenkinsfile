@@ -1,6 +1,10 @@
 pipeline {
-
     agent any
+tools {
+        maven "mvn"
+        jdk "jdk"
+    }
+    
     stages {
 
          stage('Clone repository') {
@@ -34,10 +38,13 @@ pipeline {
 
                 stage('Candidate Service') {
                     steps {
+                        script{
                         echo 'Building Candidate Service'
+                            mvnHome = tool "mvn"
                         //username and password are provided for integration testing of server with mysql otherwise, no requirement
-                        sh "cd CandidateMicroservice && mvn clean install"
+                        sh "cd CandidateMicroservice && ${mvnHome}/bin/mvn clean package"
                         sh 'mv -f CandidateMicroservice/target/CandidateMicroservice-0.0.1-SNAPSHOT.jar JarFiles/'
+                    }
                     }
                 }
 
