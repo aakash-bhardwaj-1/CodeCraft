@@ -1,7 +1,10 @@
 pipeline {
-    agent any
 
-    
+environment {
+        DOCKERHUB_USER = 'aakashbhardwaj1'
+    }
+
+    agent any
     stages {
 
          stage('Clone repository') {
@@ -56,6 +59,20 @@ pipeline {
                 }
 
 
+            }
+
+
+        }
+    
+            stage('Build Docker Images') {
+            steps {
+                echo 'Building Docker Images'
+                sh "docker build -t ${DOCKERHUB_USER}/eurekaregistry -f DockerFiles/ServiceRegistryDockerfile ."
+                sh "docker build -t ${DOCKERHUB_USER}/apigateway -f DockerFiles/APIGatewayServiceDockerfile ."
+                sh "docker build -t ${DOCKERHUB_USER}/userservice -f DockerFiles/UserServiceDockerfile ."
+                sh "docker build -t ${DOCKERHUB_USER}/accountservice -f DockerFiles/AccountServiceDockerfile ."
+                sh "docker build -t ${DOCKERHUB_USER}/notificationservice -f DockerFiles/NotificationServiceDockerfile ."
+                sh "docker build -t ${DOCKERHUB_USER}/frontend -f DockerFiles/FrontendDockerfile ."
             }
         }
     }
