@@ -70,8 +70,8 @@ environment {
                 echo 'Building Docker Images'
                 sh "docker build -t ${DOCKERHUB_USER}/eurekaregistry -f Dockerfiles/ServiceRegistryDockerfile ."
                 sh "docker build -t ${DOCKERHUB_USER}/apigateway -f Dockerfiles/APIGatewayServiceDockerfile ."
-                sh "docker build -t ${DOCKERHUB_USER}/InterviewerService -f Dockerfiles/InterviewerServiceDockerfile ."
-                sh "docker build -t ${DOCKERHUB_USER}/CandidateService -f Dockerfiles/CandidateServiceDockerfile ."
+                sh "docker build -t ${DOCKERHUB_USER}/interviewerService -f Dockerfiles/InterviewerServiceDockerfile ."
+                sh "docker build -t ${DOCKERHUB_USER}/candidateService -f Dockerfiles/CandidateServiceDockerfile ."
                 // sh "docker build -t ${DOCKERHUB_USER}/accountservice -f Dockerfiles/AccountServiceDockerfile ."
                 // sh "docker build -t ${DOCKERHUB_USER}/notificationservice -f Dockerfiles/NotificationServiceDockerfile ."
                 // sh "docker build -t ${DOCKERHUB_USER}/frontend -f Dockerfiles/FrontendDockerfile ."
