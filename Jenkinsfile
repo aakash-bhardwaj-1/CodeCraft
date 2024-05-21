@@ -68,12 +68,12 @@ environment {
             steps {
                 echo 'Building Docker Images'
                     sh "ls"
-                sh "docker build -t ${DOCKERHUB_USER}/eurekaregistry -f DockerFiles/ServiceRegistryDockerfile ."
-                sh "docker build -t ${DOCKERHUB_USER}/apigateway -f DockerFiles/APIGatewayServiceDockerfile ."
-                sh "docker build -t ${DOCKERHUB_USER}/userservice -f DockerFiles/UserServiceDockerfile ."
-                sh "docker build -t ${DOCKERHUB_USER}/accountservice -f DockerFiles/AccountServiceDockerfile ."
-                sh "docker build -t ${DOCKERHUB_USER}/notificationservice -f DockerFiles/NotificationServiceDockerfile ."
-                sh "docker build -t ${DOCKERHUB_USER}/frontend -f DockerFiles/FrontendDockerfile ."
+                sh "docker build -t ${DOCKERHUB_USER}/eurekaregistry -f Dockerfiles/ServiceRegistryDockerfile ."
+                sh "docker build -t ${DOCKERHUB_USER}/apigateway -f Dockerfiles/APIGatewayServiceDockerfile ."
+                sh "docker build -t ${DOCKERHUB_USER}/userservice -f Dockerfiles/UserServiceDockerfile ."
+                sh "docker build -t ${DOCKERHUB_USER}/accountservice -f Dockerfiles/AccountServiceDockerfile ."
+                sh "docker build -t ${DOCKERHUB_USER}/notificationservice -f Dockerfiles/NotificationServiceDockerfile ."
+                sh "docker build -t ${DOCKERHUB_USER}/frontend -f Dockerfiles/FrontendDockerfile ."
             }
         }
     }
