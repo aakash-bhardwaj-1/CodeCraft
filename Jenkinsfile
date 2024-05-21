@@ -17,7 +17,7 @@ tools {
         stage('Maven Build ServiceRegistry') {
             steps {
                 echo 'Building ServiceRegistry'
-                sh 'cd ServiceRegistry && mvn clean install'
+                sh 'cd ServiceRegistry && mvn clean install -e'
                 sh 'mv -f ServiceRegistry/target/ServiceRegistry-0.0.1-SNAPSHOT.jar JarFiles/'
             }
         }
