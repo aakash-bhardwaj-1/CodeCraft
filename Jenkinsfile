@@ -1,6 +1,7 @@
 pipeline {
 
 environment {
+        DOCKERHUB_CREDENTIALS = credentials('DockerHubCred')
         DOCKERHUB_USER = 'aakashbhardwaj1'
     }
 
@@ -69,8 +70,30 @@ environment {
                 echo 'Building Docker Images'
                 sh "docker build -t ${DOCKERHUB_USER}/eurekaregistry -f Dockerfiles/ServiceRegistryDockerfile ."
                 sh "docker build -t ${DOCKERHUB_USER}/apigateway -f Dockerfiles/APIGatewayServiceDockerfile ."
-                sh "docker build -t ${DOCKERHUB_USER}/userservice -f Dockerfiles/InterviewerServiceDockerfile ."
-                sh "docker build -t ${DOCKERHUB_USER}/userservice -f Dockerfiles/CandidateServiceDockerfile ."
+                sh "docker build -t ${DOCKERHUB_USER}/InterviewerService -f Dockerfiles/InterviewerServiceDockerfile ."
+                sh "docker build -t ${DOCKERHUB_USER}/CandidateService -f Dockerfiles/CandidateServiceDockerfile ."
+                // sh "docker build -t ${DOCKERHUB_USER}/accountservice -f Dockerfiles/AccountServiceDockerfile ."
+                // sh "docker build -t ${DOCKERHUB_USER}/notificationservice -f Dockerfiles/NotificationServiceDockerfile ."
+                // sh "docker build -t ${DOCKERHUB_USER}/frontend -f Dockerfiles/FrontendDockerfile ."
+            }
+        }
+            
+            stage('Login to Docker Hub') {
+            steps {
+                echo 'Login to Docker Hub'
+                withCredentials([usernamePassword(credentialsId: 'DockerHubCred', usernameVariable: 'DOCKERHUB_USER', passwordVariable: 'DOCKERHUB_PASS')]) {
+                    sh "docker login -u ${DOCKERHUB_USER} -p ${DOCKERHUB_PASS}"
+                        }
+                    }
+                }
+
+            stage('Push Images') {
+            steps {
+                echo 'Push Docker Images'
+                sh "docker push ${DOCKERHUB_USER}/eurekaregistry"
+                sh "docker push ${DOCKERHUB_USER}/apigateway"
+                sh "docker push ${DOCKERHUB_USER}/InterviewerService"
+                sh "docker push ${DOCKERHUB_USER}/CandidateService"
                 // sh "docker build -t ${DOCKERHUB_USER}/accountservice -f Dockerfiles/AccountServiceDockerfile ."
                 // sh "docker build -t ${DOCKERHUB_USER}/notificationservice -f Dockerfiles/NotificationServiceDockerfile ."
                 // sh "docker build -t ${DOCKERHUB_USER}/frontend -f Dockerfiles/FrontendDockerfile ."
