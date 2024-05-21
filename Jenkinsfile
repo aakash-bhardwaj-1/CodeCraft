@@ -24,7 +24,7 @@ pipeline {
         stage('Maven Build APIGateway') {
             steps {
                 echo 'Building APIGateway'
-                sh 'cd ApiGateway && mvn clean install'
+                sh 'cd APIGateway && mvn clean install'
                 sh 'mv -f APIGateway/target/APIGateway-0.0.1-SNAPSHOT.jar JarFiles/'
             }
         }
