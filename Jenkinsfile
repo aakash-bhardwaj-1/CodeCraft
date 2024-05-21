@@ -92,8 +92,8 @@ environment {
                 echo 'Push Docker Images'
                 sh "docker push ${DOCKERHUB_USER}/eurekaregistry"
                 sh "docker push ${DOCKERHUB_USER}/apigateway"
-                sh "docker push ${DOCKERHUB_USER}/InterviewerService"
-                sh "docker push ${DOCKERHUB_USER}/CandidateService"
+                sh "docker push ${DOCKERHUB_USER}/interviewerservice"
+                sh "docker push ${DOCKERHUB_USER}/candidateservice"
                 // sh "docker build -t ${DOCKERHUB_USER}/accountservice -f Dockerfiles/AccountServiceDockerfile ."
                 // sh "docker build -t ${DOCKERHUB_USER}/notificationservice -f Dockerfiles/NotificationServiceDockerfile ."
                 // sh "docker build -t ${DOCKERHUB_USER}/frontend -f Dockerfiles/FrontendDockerfile ."
