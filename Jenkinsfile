@@ -67,7 +67,10 @@ environment {
             stage('Build Docker Images') {
             steps {
                 echo 'Building Docker Images'
-                    sh "ls"
+                sh "ls"
+                sh "cd APIGateway"
+                sh "ls"
+                sh "cd target"
                 sh "docker build -t ${DOCKERHUB_USER}/eurekaregistry -f Dockerfiles/ServiceRegistryDockerfile ."
                 sh "docker build -t ${DOCKERHUB_USER}/apigateway -f Dockerfiles/APIGatewayServiceDockerfile ."
                 sh "docker build -t ${DOCKERHUB_USER}/userservice -f Dockerfiles/UserServiceDockerfile ."
