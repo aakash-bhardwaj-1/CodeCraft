@@ -1,9 +1,6 @@
 pipeline {
     agent any
-tools {
-        maven "mvn"
-        jdk "jdk"
-    }
+
     
     stages {
 
@@ -18,6 +15,7 @@ tools {
             steps {
                 echo 'Building ServiceRegistry'
                 sh 'cd ServiceRegistry && mvn clean install -e'
+                sh 'mkdir JarFiles'
                 sh 'mv -f ServiceRegistry/target/ServiceRegistry-0.0.1-SNAPSHOT.jar JarFiles/'
             }
         }
