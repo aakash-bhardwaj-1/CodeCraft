@@ -72,7 +72,6 @@ environment {
                 sh "docker build -t ${DOCKERHUB_USER}/apigateway -f Dockerfiles/APIGatewayServiceDockerfile ."
                 sh "docker build -t ${DOCKERHUB_USER}/interviewerservice -f Dockerfiles/InterviewerServiceDockerfile ."
                 sh "docker build -t ${DOCKERHUB_USER}/candidateservice -f Dockerfiles/CandidateServiceDockerfile ."
-                sh "docker build -t ${DOCKERHUB_USER}/notificationservice -f Dockerfiles/NotificationServiceDockerfile ."
                 sh "docker build -t ${DOCKERHUB_USER}/candidatefrontend -f Dockerfiles/CandidateFrontendDockerfile ."
                 sh "docker build -t ${DOCKERHUB_USER}/interviewerfrontend -f Dockerfiles/InterviewerFrontendDockerfile ."
             }
