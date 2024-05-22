@@ -74,7 +74,8 @@ environment {
                 sh "docker build -t ${DOCKERHUB_USER}/candidateservice -f Dockerfiles/CandidateServiceDockerfile ."
                 // sh "docker build -t ${DOCKERHUB_USER}/accountservice -f Dockerfiles/AccountServiceDockerfile ."
                 // sh "docker build -t ${DOCKERHUB_USER}/notificationservice -f Dockerfiles/NotificationServiceDockerfile ."
-                // sh "docker build -t ${DOCKERHUB_USER}/frontend -f Dockerfiles/FrontendDockerfile ."
+                sh "docker build -t ${DOCKERHUB_USER}/candidatefrontend -f Dockerfiles/CandidateFrontendDockerfile ."
+                sh "docker build -t ${DOCKERHUB_USER}/interviewerfrontend -f Dockerfiles/InterviewerFrontendDockerfile ."
             }
         }
             
