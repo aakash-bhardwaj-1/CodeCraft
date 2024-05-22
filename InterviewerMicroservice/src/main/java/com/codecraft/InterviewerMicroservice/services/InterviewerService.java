@@ -22,6 +22,8 @@ public interface InterviewerService {
 
     boolean updateTestScore(UpdateTestScoreDTO updateTestScoreRequest);
     Optional<JobForCandidateMicroserviceDTO> getJob(long id);
+     boolean candidateCodeEditorCheck(CandidateCheckDTO CandidateCheckDTO);
+    boolean interviewerCodeEditorCheck(String interviewerEmail);
 
 //    boolean postInterviewRecord(PostInterviewRecordDTO postInterviewRecordRequest);
 

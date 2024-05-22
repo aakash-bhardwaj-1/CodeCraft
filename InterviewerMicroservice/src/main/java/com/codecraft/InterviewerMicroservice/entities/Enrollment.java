@@ -21,7 +21,7 @@ public class Enrollment {
     private Long candidateId;
     private String candidateName;
     private Date interviewDate=null;
-    private String room_id = "";
+    private String roomId = "";
     @ManyToOne
     @JoinColumn(name = "job_id")
     private Job job;

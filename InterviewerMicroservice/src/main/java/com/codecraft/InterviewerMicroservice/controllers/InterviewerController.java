@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
-    @RequestMapping("/interviewer")
+@RequestMapping("/interviewer")
 public class InterviewerController {
 
     @Autowired
@@ -107,6 +107,19 @@ public class InterviewerController {
         } else {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error in Test Score Updation");
         }
+    }
+
+    @PostMapping("/code-sync-candidate-check")
+    public boolean candidateCheck(@RequestBody CandidateCheckDTO CandidateCheckDTO){
+        System.out.println(CandidateCheckDTO.getCandidateName());
+        System.out.println(CandidateCheckDTO.getRoomId());
+       return interviewerService.candidateCodeEditorCheck(CandidateCheckDTO);
+    }
+
+    @PostMapping("/code-sync-interviewer-check/{interviewerEmail}")
+    public boolean interviewerCheck(@PathVariable String interviewerEmail){
+        System.out.println(interviewerEmail);
+        return interviewerService.interviewerCodeEditorCheck(interviewerEmail);
     }
 
 //    @PostMapping("/job/interviewRecord")

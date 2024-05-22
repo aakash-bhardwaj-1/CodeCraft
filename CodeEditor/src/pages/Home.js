@@ -3,12 +3,17 @@ import { v4 as uuidV4 } from "uuid";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import logo from "../static/logo.png";
+import axios from "axios";
 
 const Home = () => {
 	const navigate = useNavigate();
 
 	const [roomId, setRoomId] = useState("");
 	const [username, setUsername] = useState("");
+	const [candidateName, setCandidateName] = useState("");
+	const [error, setError] = useState("");
+	const [interviewer, setInterviewer] = useState(false);
+
 	const createNewRoom = (e) => {
 		e.preventDefault();
 		const id = uuidV4();
@@ -16,19 +21,63 @@ const Home = () => {
 		toast.success("Created a new room");
 	};
 
-	const joinRoom = () => {
+	const joinRoom = async () => {
 		if (!roomId || !username) {
 			toast.error("ROOM ID & username is required");
 			return;
 		}
+		
+		setCandidateName(username);
 
-		// Redirect
-		navigate(`/editor/${roomId}`, {
-			state: {
-                username,
-                interviewer
-			},
-		});
+		if (!interviewer) {
+			// enroll check
+			try {
+				const response = await axios.post('http://localhost:8000/interviewer/code-sync-candidate-check', {
+					roomId,
+					candidateName: username,
+				});
+				
+				// If the login is successful, navigate to the editor
+				if (response.data === true) {
+					navigate(`/editor/${roomId}`, {
+						state: {
+							username,
+							interviewer,
+						},
+					});
+				} else {
+					setError('Invalid login credentials');
+					toast.error('Invalid login credentials');
+				}
+			} catch (error) {
+				console.error('Error logging in:', error);
+				setError('Failed to login. Please try again.');
+				toast.error('Failed to login. Please try again.');
+			}
+		} else {
+			try{
+			const response = await axios.post(`http://localhost:8000/interviewer/code-sync-interviewer-check/${username}`, {
+					roomId,
+					candidateName: username,
+				});			
+				if (response.data === true) {
+					navigate(`/editor/${roomId}`, {
+						state: {
+							username,
+							interviewer,
+						},
+					});
+				}
+				else {
+					setError('Invalid login credentials');
+					toast.error('Invalid login credentials');
+				}
+			} catch (error) {
+				console.error('Error logging in:', error);
+				setError('Failed to login. Please try again.');
+				toast.error('Failed to login. Please try again.');
+			}
+		}
 	};
 
 	const handleInputEnter = (e) => {
@@ -37,12 +86,10 @@ const Home = () => {
 		}
 	};
 
-	const [interviewer, setInterviewer] = React.useState(false);
-
 	const handleInterviewer = () => {
 		setInterviewer(!interviewer);
-    };
-    
+	};
+	
 	return (
 		<div className="homePageWrapper">
 			<div className="formWrapper">
@@ -97,6 +144,7 @@ const Home = () => {
 						</a>
 					</span>
 				</div>
+				{error && <p className="error">{error}</p>}
 			</div>
 		</div>
 	);

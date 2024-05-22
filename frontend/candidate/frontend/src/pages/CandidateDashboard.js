@@ -8,7 +8,7 @@ import Navbar from "../components/header/Navbar";
 
 function CandidateDashboard() {
 	return (
-		<div className="bg-slate-900">
+		<div>
 			<Navbar />
 			<PageHeading title="Candidate Dashboard" />
 

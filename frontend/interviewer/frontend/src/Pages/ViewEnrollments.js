@@ -23,7 +23,7 @@ const ViewEnrollments = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/interviewer/jobEnrollments/${id}`);
+        const response = await axios.get(`http://localhost:8081/interviewer/jobEnrollments/${id}`);
         setJobs(response.data);
       } catch (error) {
         console.error('Error getting data:', error);
@@ -37,7 +37,7 @@ const ViewEnrollments = () => {
     try {
       const javaSqlDate = new Date(selectedDate).toISOString().split('T')[0];
       
-      await axios.post(`http://localhost:8000/interviewer/scheduleInterview`, {
+      await axios.post(`http://localhost:8081/interviewer/scheduleInterview`, {
         enrollId: selectedenrollId,
         interviewDate: javaSqlDate,
       });

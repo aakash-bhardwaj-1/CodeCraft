@@ -55,6 +55,22 @@ public class InterviewerServiceImpl implements InterviewerService {
         return stringBuilder.toString();
     }
 
+    public boolean candidateCodeEditorCheck(CandidateCheckDTO CandidateCheckDTO){
+        Enrollment enroll = enrollmentRepository.findByAndCandidateNameAndAndRoomId(CandidateCheckDTO.getCandidateName(),CandidateCheckDTO.getRoomId());
+       if(enroll ==null){
+           return false;
+       }
+        return true;
+    }
+
+    public boolean interviewerCodeEditorCheck(String email){
+        Interviewer interviewer = interviewerRepository.findByEmail(email);
+        if(interviewer ==null){
+            return false;
+        }
+        return true;
+    }
+
     public String login(String email, String password) {
         Interviewer candidate = interviewerRepository.findByEmail(email);
         if (candidate != null && candidate.getPassword().equals(password)) {
@@ -161,7 +177,7 @@ public class InterviewerServiceImpl implements InterviewerService {
         jobEnrollmentInfoDTO.setCandidateId(enrollment.getCandidateId());
         jobEnrollmentInfoDTO.setCandidateName(enrollment.getCandidateName());
         jobEnrollmentInfoDTO.setInterviewDate(enrollment.getInterviewDate());
-        jobEnrollmentInfoDTO.setRoomId(enrollment.getRoom_id());
+        jobEnrollmentInfoDTO.setRoomId(enrollment.getRoomId());
 // jobEnrollmentInfoDTO.setTestScore(enrollment.getTestScore()); // Assuming this setter exists if uncommenting
         jobEnrollmentInfoDTO.setEnrollId(enrollment.getId());
 //        jobEnrollmentInfoDTO.setInterviewRecordId(enrollment.getInterviewRecord() != null ? enrollment.getInterviewRecord().getId() : null);
@@ -180,7 +196,7 @@ return jobEnrollmentInfoDTO;
         Optional<Enrollment> enrollment = enrollmentRepository.findById(dto.getEnrollId());
         Enrollment enrollmentDate = enrollment.get();
         enrollmentDate.setInterviewDate(dto.getInterviewDate());
-        enrollmentDate.setRoom_id(generateString());
+        enrollmentDate.setRoomId(generateString());
         enrollmentRepository.save(enrollmentDate);
 
         updateAppliedJobDTO updateAppliedJobDTO = new updateAppliedJobDTO();
