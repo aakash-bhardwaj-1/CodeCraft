@@ -1,0 +1,97 @@
+version: "3"
+
+services:
+  eurekaregistry:
+    image: aakashbhardwaj1/eurekaregistry
+    container_name: eurekaregistry
+    ports:
+      - "8761:8761"
+    networks:
+      - bank-network
+
+  apigateway:
+    image: aakashbhardwaj1/apigateway
+    container_name: apigateway
+    ports:
+      - "8000:8000"
+    networks:
+      - bank-network
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eurekaregistry:8761/eureka/
+    depends_on:
+      - eurekaregistry
+
+  interviewerservice:
+    image: aakashbhardwaj1/interviewerservice
+    container_name: interviewerservice
+    ports:
+      - "8081:8081"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eurekaregistry:8761/eureka/
+      - SPRING_DATASOURCE_URL=jdbc:mysql://codecraft_db/codecraft?createDatabaseIfNotExist=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+    networks:
+      - bank-network
+    depends_on:
+      - eurekaregistry
+      - apigateway
+      - codecraft_db
+    volumes:
+      - /home:/logs
+
+  candidateservice:
+    image: aakashbhardwaj1/candidateservice
+    container_name: candidateservice
+    ports:
+      - "8082:8082"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eurekaregistry:8761/eureka/
+      - SPRING_DATASOURCE_URL=jdbc:mysql://codecraft_db/codecraft?createDatabaseIfNotExist=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+    networks:
+      - bank-network
+    depends_on:
+      - eurekaregistry
+      - apigateway
+      - codecraft_db
+    volumes:
+      - /home:/logs
+
+  codecraft_db:
+    image: mysql:8
+    container_name: codecraft_db
+    ports:
+      - "3307:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=codecraft
+    volumes:
+      - codecraft_db:/var/lib/mysql
+    networks:
+      - bank-network
+
+  interviewerfrontend:
+    image: aakashbhardwaj1/interviewerfrontend
+    container_name: interviewerfrontend
+    ports:
+      - "3000:80"
+    networks:
+      - bank-network
+  
+  candidatefrontend:
+    image: aakashbhardwaj1/candidatefrontend
+    container_name: candidatefrontend
+    ports:
+      - "3001:80"
+    networks:
+      - bank-network
+
+volumes:
+  codecraft_db:
+    driver: local
+
+networks:
+  bank-network:
+    driver: bridge
