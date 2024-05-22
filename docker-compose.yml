@@ -7,7 +7,7 @@ services:
     ports:
       - "8761:8761"
     networks:
-      - bank-network
+      - codecraft-network
 
   apigateway:
     image: aakashbhardwaj1/apigateway
@@ -15,7 +15,7 @@ services:
     ports:
       - "8000:8000"
     networks:
-      - bank-network
+      - codecraft-network
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eurekaregistry:8761/eureka/
     depends_on:
@@ -28,17 +28,17 @@ services:
       - "8081:8081"
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eurekaregistry:8761/eureka/
-      - SPRING_DATASOURCE_URL=jdbc:mysql://codecraft_db/codecraft?createDatabaseIfNotExist=true
+      - SPRING_DATASOURCE_URL=jdbc:mysql://codecraft_db:3306/codecraft?createDatabaseIfNotExist=true
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=root
     networks:
-      - bank-network
+      - codecraft-network
     depends_on:
       - eurekaregistry
       - apigateway
       - codecraft_db
     volumes:
-      - /home:/logs
+      - /home/logs/interviewerservice:/logs
 
   candidateservice:
     image: aakashbhardwaj1/candidateservice
@@ -47,17 +47,17 @@ services:
       - "8082:8082"
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eurekaregistry:8761/eureka/
-      - SPRING_DATASOURCE_URL=jdbc:mysql://codecraft_db/codecraft?createDatabaseIfNotExist=true
+      - SPRING_DATASOURCE_URL=jdbc:mysql://codecraft_db:3306/codecraft?createDatabaseIfNotExist=true
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=root
     networks:
-      - bank-network
+      - codecraft-network
     depends_on:
       - eurekaregistry
       - apigateway
       - codecraft_db
     volumes:
-      - /home:/logs
+      - /home/logs/candidateservice:/logs
 
   codecraft_db:
     image: mysql:8
@@ -70,7 +70,7 @@ services:
     volumes:
       - codecraft_db:/var/lib/mysql
     networks:
-      - bank-network
+      - codecraft-network
 
   interviewerfrontend:
     image: aakashbhardwaj1/interviewerfrontend
@@ -78,7 +78,7 @@ services:
     ports:
       - "3000:80"
     networks:
-      - bank-network
+      - codecraft-network
   
   candidatefrontend:
     image: aakashbhardwaj1/candidatefrontend
@@ -86,12 +86,12 @@ services:
     ports:
       - "3001:80"
     networks:
-      - bank-network
+      - codecraft-network
 
 volumes:
   codecraft_db:
     driver: local
 
 networks:
-  bank-network:
+  codecraft-network:
     driver: bridge
