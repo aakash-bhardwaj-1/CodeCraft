@@ -96,7 +96,7 @@ environment {
                 sh "docker push ${DOCKERHUB_USER}/candidateservice"
                 sh "docker push ${DOCKERHUB_USER}/candidatefrontend"
                 sh "docker push ${DOCKERHUB_USER}/interviewerfrontend"
-                
+            }   
         }
     }
 }
