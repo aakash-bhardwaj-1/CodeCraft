@@ -9,6 +9,7 @@ COPY CodeEditor/package.json ../CodeEditor/package-lock.json ./
 
 # Install dependencies
 RUN npm install --legacy-peer-deps
+RUN npm axios --legacy-peer-deps
 
 # Copy the rest of the application code and configuration files
 COPY CodeEditor/public ./public
@@ -31,7 +32,7 @@ COPY --from=build /app/build /usr/share/nginx/html
 COPY CodeEditor/nginx.conf /etc/nginx/conf.d/default.conf
 CMD ["node", "server.js;"]
 
-# Expose port 8083
+# Expose port 80
 EXPOSE 80
 
 # Start Nginx
