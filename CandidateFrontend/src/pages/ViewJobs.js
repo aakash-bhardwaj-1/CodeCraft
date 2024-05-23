@@ -18,7 +18,7 @@ function ViewJobs() {
     const handleViewClick = async (id, company, candidateId) => {
         try {
             const dto = JobApplyDTO(id, company, candidateId);
-            await axios.post("http://localhost:8082/candidate/apply", dto);
+            await axios.post("http://localhost:8000/candidate/apply", dto);
             console.log('Job application submitted:', dto);
             // After applying, fetch the updated list of applied jobs and update the table
             fetchAppliedJobs();
