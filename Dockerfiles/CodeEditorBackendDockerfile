@@ -1,17 +1,18 @@
 # Use the official Node.js  LTS (Long Term Support) image as base
 FROM node:lts-alpine
 
-# Set the working directory inside the container
-WORKDIR /usr/src/app
+WORKDIR /app
 
-# Copy package.json and package-lock.json to the working directory
-COPY package*.json ./
+# Copy package.json and package-lock.json
+COPY CodeEditor/package.json ../CodeEditor/package-lock.json ./
+
+
 
 # Install dependencies
 RUN npm install --legacy-peer-deps
 
 # Copy server.js from your local directory into the container
-COPY CodeEditor/server.js .
+COPY CodeEditor/server.js ./
 
 # Expose port 5000 to the outside world
 EXPOSE 5000
