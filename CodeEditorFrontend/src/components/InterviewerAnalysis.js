@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -6,7 +7,8 @@ function InterviewerAnalysis() {
 	const [fulfilledRequirements, setFulfilledRequirements] = useState([]);
 	const [positiveFeedback, setPositiveFeedback] = useState("");
 	const [negativeFeedback, setNegativeFeedback] = useState("");
-
+	const roomId = localStorage.getItem("roomId");
+	const navigate = useNavigate();
 	const handleRequirementChange = (requirement) => {
 		if (fulfilledRequirements.includes(requirement)) {
 			setFulfilledRequirements(
@@ -21,10 +23,17 @@ function InterviewerAnalysis() {
 	};
 
 	const submit = async () => {
-		console.log("Fulfilled Requirements:", fulfilledRequirements);
-		console.log("Positive Feedback:", positiveFeedback);
-		console.log("Negative Feedback:", negativeFeedback);
-		// reactNavigator("/");
+		try {
+			await axios.post('http://localhost:8000/interviewer/result', {
+				roomId: roomId,
+				positiveFeedback: positiveFeedback,
+				negativeFeedback: negativeFeedback,
+			});
+			alert("Interview Ended");
+			navigate("/");
+		} catch (error) {
+			console.error("Error submitting the form:", error);
+		}
 	};
 
 	const requirements = [
@@ -42,26 +51,19 @@ function InterviewerAnalysis() {
 			<h1>Analysis</h1>
 
 			<div className="requirementAnalysis">
-				<h3>Fulfilled Requirements</h3>
-				<div className="requriements">
+				{/* <div className="requriements">
 					{requirements.map((requirement, index) => (
 						<label key={index}>
 							<input
 								type="checkbox"
 								className="requirementCheckbox"
-								checked={fulfilledRequirements.includes(
-									requirement
-								)}
-								onChange={() =>
-									handleRequirementChange(
-										requirement
-									)
-								}
+								checked={fulfilledRequirements.includes(requirement)}
+								onChange={() => handleRequirementChange(requirement)}
 							/>
 							{requirement}
 						</label>
 					))}
-				</div>
+				</div> */}
 			</div>
 			<div className="inputAnalysis">
 				<h3>Positive Feedback</h3>

@@ -93,6 +93,12 @@ services:
     container_name: codeeditor
     ports:
       - "3002:80"
+    networks:
+      - codecraft-network
+  codeeditorbackend:
+    image: aakashbhardwaj1/codeeditorbackend
+    container_name: codeeditorbackend
+    ports:
       - "5000:5000"
     networks:
       - codecraft-network

@@ -10,7 +10,6 @@ const Home = () => {
 
 	const [roomId, setRoomId] = useState("");
 	const [username, setUsername] = useState("");
-	const [candidateName, setCandidateName] = useState("");
 	const [error, setError] = useState("");
 	const [interviewer, setInterviewer] = useState(false);
 
@@ -26,69 +25,55 @@ const Home = () => {
 			toast.error("ROOM ID & username is required");
 			return;
 		}
-		
-		setCandidateName(username);
+		localStorage.setItem("roomId", roomId);
+		localStorage.setItem("candidateName", username);
 
-
-
-		/////
-		navigate(`/editor/${roomId}`, {
-							state: {
-								username,
-								interviewer,
-							},
-						});
-		////
-
-		// if (!interviewer) {
-		// 	// enroll check
-		// 	try {
-		// 		const response = await axios.post('http://localhost:8000/interviewer/code-sync-candidate-check', {
-		// 			roomId,
-		// 			candidateName: username,
-		// 		});
+		if (!interviewer) {
+			// enroll check
+			try {
+				const response = await axios.post('http://localhost:8000/interviewer/code-sync-candidate-check', {
+					roomId,
+				});
 				
-		// 		// If the login is successful, navigate to the editor
-		// 		if (response.data === true) {
-		// 			navigate(`/editor/${roomId}`, {
-		// 				state: {
-		// 					username,
-		// 					interviewer,
-		// 				},
-		// 			});
-		// 		} else {
-		// 			setError('Invalid login credentials');
-		// 			toast.error('Invalid login credentials');
-		// 		}
-		// 	} catch (error) {
-		// 		console.error('Error logging in:', error);
-		// 		setError('Failed to login. Please try again.');
-		// 		toast.error('Failed to login. Please try again.');
-		// 	}
-		// } else {
-		// 	try{
-		// 	const response = await axios.post(`http://localhost:8000/interviewer/code-sync-interviewer-check/${username}`, {
-		// 			roomId,
-		// 			candidateName: username,
-		// 		});			
-		// 		if (response.data === true) {
-		// 			navigate(`/editor/${roomId}`, {
-		// 				state: {
-		// 					username,
-		// 					interviewer,
-		// 				},
-		// 			});
-		// 		}
-		// 		else {
-		// 			setError('Invalid login credentials');
-		// 			toast.error('Invalid login credentials');
-		// 		}
-		// 	} catch (error) {
-		// 		console.error('Error logging in:', error);
-		// 		setError('Failed to login. Please try again.');
-		// 		toast.error('Failed to login. Please try again.');
-		// 	}
-		// }
+				// If the login is successful, navigate to the editor
+				if (response.data === true) {
+					navigate(`/editor/${roomId}`, {
+						state: {
+							username,
+							interviewer,
+						},
+					});
+				} else {
+					setError('Invalid login credentials');
+					toast.error('Invalid login credentials');
+				}
+			} catch (error) {
+				console.error('Error logging in:', error);
+				setError('Failed to login. Please try again.');
+				toast.error('Failed to login. Please try again.');
+			}
+		} else {
+			try {
+				const response = await axios.post(`http://localhost:8000/interviewer/code-sync-interviewer-check/${username}`, {
+					roomId,
+				});			
+				if (response.data === true) {
+					navigate(`/editor/${roomId}`, {
+						state: {
+							username,
+							interviewer,
+						},
+					});
+				} else {
+					setError('Invalid login credentials');
+					toast.error('Invalid login credentials');
+				}
+			} catch (error) {
+				console.error('Error logging in:', error);
+				setError('Failed to login. Please try again.');
+				toast.error('Failed to login. Please try again.');
+			}
+		}
 	};
 
 	const handleInputEnter = (e) => {

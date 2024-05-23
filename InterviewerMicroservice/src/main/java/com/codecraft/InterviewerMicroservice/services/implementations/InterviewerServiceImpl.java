@@ -43,8 +43,8 @@ public class InterviewerServiceImpl implements InterviewerService {
     private String generateString() {
         StringBuilder stringBuilder = new StringBuilder();
 
-        for (int i = 0; i < 9; i++) {
-            if (i > 0 && i % 3 == 0) {
+        for (int i = 0; i < 16; i++) {
+            if (i > 0 && i % 4 == 0) {
                 stringBuilder.append("-");
             }
             // generate a random character
@@ -300,6 +300,18 @@ public Optional<JobForCandidateMicroserviceDTO> getJob(long id) {
         return Optional.empty();
     }
 }
+@Override
+public void interviewResult(InterviewRecordInfoDTO dto){
+    List<Enrollment> enroll = enrollmentRepository.findByRoomId(dto.getRoomId());
+    if(enroll!=null && enroll.size()==1){
+        InterviewRecord result = new InterviewRecord();
+        result.setCandidateId(enroll.get(0).getCandidateId());
+        result.setEnrollment(enroll.get(0));
+        result.setPositiveFeedback(dto.getPositiveFeedback());
+        result.setNegativeFeedback(dto.getNegativeFeedback());
+        interviewRecordRepository.save(result);
+    }
+    }
 
 //    @Override
 //    public boolean postInterviewRecord(PostInterviewRecordDTO postInterviewRecordRequest) {

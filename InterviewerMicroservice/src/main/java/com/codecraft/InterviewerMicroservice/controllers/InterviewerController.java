@@ -45,8 +45,11 @@ public class InterviewerController {
         System.out.println(ScheduleInterviewDTO.getInterviewDate());
         interviewerService.scheduleInterview(ScheduleInterviewDTO);
     }
-
-
+@PostMapping("/result")
+    public void interviewResults(@RequestBody InterviewRecordInfoDTO dto){
+    System.out.println(dto);
+    interviewerService.interviewResult(dto);
+    }
     @GetMapping("/count/{id}")
     public CountDTO counter(@PathVariable int id){
         return interviewerService.counter(id);
