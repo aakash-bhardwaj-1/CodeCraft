@@ -18,7 +18,7 @@ function Login() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			console.log("api call to localhost:8000")
+			await console.log("api call to localhost:8000")
 			const response = await axios.post("http://localhost:8000/candidate/login", { email, password });
 			console.log(response.data);
 			// If the login is successful, navigate to the dashboard

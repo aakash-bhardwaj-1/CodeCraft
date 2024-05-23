@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(url = "http://localhost:8082",value = "AppliedJobs-Client")
+@FeignClient(url = "http://localhost:8000",value = "AppliedJobs-Client")
 public interface CandidateClient {
     @GetMapping("/appliedJobs/{id}")
     ResponseEntity<List<AppliedJobDTO>> listOfAppliedJobs(@PathVariable Integer id);
