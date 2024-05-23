@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
-@FeignClient(url = "http://localhost:8000",value = "Enrollment-Client")
+//@FeignClient(url = "http://localhost:8000",value = "Enrollment-Client")
+@FeignClient(name = "InterviewerMicroservice")
 public interface InterviewerClient {
     @GetMapping("/interviewer/job/{id}")
     public ResponseEntity<Optional<JobForCandidateMicroserviceDTO>> getJob(@PathVariable int id);
