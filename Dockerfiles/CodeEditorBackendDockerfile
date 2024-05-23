@@ -4,7 +4,7 @@ FROM node:lts-alpine
 WORKDIR /app
 
 # Copy package.json and package-lock.json
-COPY CodeEditorBackend/package.json ../CodeEditor/package-lock.json ./
+COPY CodeEditorBackend/package.json ../CodeEditorBackend/package-lock.json ./
 
 
 
