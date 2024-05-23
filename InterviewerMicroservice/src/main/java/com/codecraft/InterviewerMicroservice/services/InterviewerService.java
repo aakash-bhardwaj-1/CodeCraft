@@ -18,7 +18,7 @@ public interface InterviewerService {
 
     List<JobEnrollmentInfoDTO> getJobEnrollments(Long jobId);
     public void scheduleInterview(ScheduleInterviewDTO dto);
-
+    public CountDTO counter(int id);
     boolean enrollInJob(JobEnrollDTO jobEnrollRequest);
 
     boolean updateTestScore(UpdateTestScoreDTO updateTestScoreRequest);

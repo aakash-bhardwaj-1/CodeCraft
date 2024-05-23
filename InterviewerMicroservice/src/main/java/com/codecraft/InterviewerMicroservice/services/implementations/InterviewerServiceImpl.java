@@ -216,7 +216,13 @@ return jobEnrollmentInfoDTO;
         updateAppliedJobDTO.setJid(enrollmentDate.getJob().getId());
         updateAppliedJobDTO.setInterviewDate(dto.getInterviewDate());
         candidateClient.updateAppliedJob(updateAppliedJobDTO);
+    }
+    public CountDTO counter(int InterviewerId){
+        CountDTO dto = new CountDTO();
+        dto.setActiveJobs(jobRepository.findAllByStatus("open").size());
+        dto.setClosedJobs(jobRepository.findAllByStatus("closed").size());
 
+        return dto;
     }
     @Override
     public boolean enrollInJob(JobEnrollDTO jobEnrollRequest) {

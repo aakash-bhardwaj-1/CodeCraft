@@ -46,6 +46,12 @@ public class InterviewerController {
         interviewerService.scheduleInterview(ScheduleInterviewDTO);
     }
 
+
+    @GetMapping("/count/{id}")
+    public CountDTO counter(@PathVariable int id){
+        return interviewerService.counter(id);
+    }
+
     @PostMapping("/createJob")
     public ResponseEntity<String> createJob(@RequestBody JobPostingDTO jobPostingRequest) {
         System.out.println(jobPostingRequest);
