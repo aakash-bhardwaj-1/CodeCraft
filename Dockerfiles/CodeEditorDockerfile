@@ -34,9 +34,5 @@ EXPOSE 5000
 
 COPY CodeEditor/server.js ./server.js
 
-
-# Define PM2 configuration inline and write it to ecosystem.config.js
-RUN echo "module.exports = { apps: [{ name: 'node-server', script: 'server.js', watch: true, env: { NODE_ENV: 'production', PORT: 5000 } }] };" > ecosystem.config.js
-
 # Start Nginx and Node.js using PM2
 CMD ["node", "server.js"]
