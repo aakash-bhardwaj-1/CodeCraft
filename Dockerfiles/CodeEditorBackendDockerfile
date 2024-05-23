@@ -4,7 +4,7 @@ FROM node:lts-alpine
 WORKDIR /app
 
 # Copy package.json and package-lock.json
-COPY CodeEditor/package.json ../CodeEditor/package-lock.json ./
+COPY CodeEditorBackend/package.json ../CodeEditor/package-lock.json ./
 
 
 
@@ -12,7 +12,7 @@ COPY CodeEditor/package.json ../CodeEditor/package-lock.json ./
 RUN npm install --legacy-peer-deps
 
 # Copy server.js from your local directory into the container
-COPY CodeEditor/server.js ./
+COPY CodeEditorBackend/server.js ./
 
 # Expose port 5000 to the outside world
 EXPOSE 5000
