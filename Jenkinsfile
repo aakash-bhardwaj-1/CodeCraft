@@ -95,12 +95,12 @@ environment {
             stage('Push Images') {
             steps {
                 echo 'Push Docker Images'
-                sh "docker push ${DOCKERHUB_USER}/eurekaregistry"
-                sh "docker push ${DOCKERHUB_USER}/apigateway"
-                sh "docker push ${DOCKERHUB_USER}/interviewerservice"
-                sh "docker push ${DOCKERHUB_USER}/candidateservice"
-                sh "docker push ${DOCKERHUB_USER}/candidatefrontend"
-                sh "docker push ${DOCKERHUB_USER}/interviewerfrontend"
+                //sh "docker push ${DOCKERHUB_USER}/eurekaregistry"
+                //sh "docker push ${DOCKERHUB_USER}/apigateway"
+                //sh "docker push ${DOCKERHUB_USER}/interviewerservice"
+                //sh "docker push ${DOCKERHUB_USER}/candidateservice"
+                //sh "docker push ${DOCKERHUB_USER}/candidatefrontend"
+                //sh "docker push ${DOCKERHUB_USER}/interviewerfrontend"
                 sh "docker push ${DOCKERHUB_USER}/codeeditor"
             }   
         }
