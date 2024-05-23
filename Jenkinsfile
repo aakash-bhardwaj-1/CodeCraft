@@ -13,7 +13,12 @@ environment {
                 git branch: 'main', url: 'https://github.com/aakash-bhardwaj-1/CodeCraft.git'
             }
         }
-
+        stage('Making JARFile') {
+            steps {
+                echo 'Making jarfile'
+                sh 'mkdir -p JarFiles'
+            }
+        }
 
         stage('Maven Build ServiceRegistry') {
             steps {
