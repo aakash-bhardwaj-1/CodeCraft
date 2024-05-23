@@ -88,6 +88,15 @@ services:
     networks:
       - codecraft-network
 
+  codeeditor:
+    image: aakashbhardwaj1/codeeditor
+    container_name: codeeditor
+    ports:
+      - "3002:80"
+      - "5000:5000"
+    networks:
+      - codecraft-network
+
 volumes:
   codecraft_db:
     driver: local
