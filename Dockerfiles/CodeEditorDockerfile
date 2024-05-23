@@ -18,9 +18,6 @@ COPY CodeEditor/src ./src
 RUN npm run build
 
 
-RUN npm install  npm@6 --legacy-peer-deps
-RUN npm install pm2@4 --legacy-peer-deps
-
 # Step 2: Serve the React application using Nginx
 FROM nginx:alpine
 
@@ -42,4 +39,4 @@ COPY CodeEditor/server.js ./server.js
 RUN echo "module.exports = { apps: [{ name: 'node-server', script: 'server.js', watch: true, env: { NODE_ENV: 'production', PORT: 5000 } }] };" > ecosystem.config.js
 
 # Start Nginx and Node.js using PM2
-CMD ["pm2-runtime", "start", "ecosystem.config.js"]
+CMD ["node", "server.js"]
