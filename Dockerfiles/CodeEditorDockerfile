@@ -36,3 +36,4 @@ COPY CodeEditor/server.js ./server.js
 
 # Start Nginx and Node.js using PM2
 CMD ["node", "server.js"]
+CMD ["nginx", "-g", "daemon off;"]
