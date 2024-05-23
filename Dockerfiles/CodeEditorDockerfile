@@ -36,15 +36,10 @@ RUN npm install -g npm@6
 # Install PM2 globally
 RUN npm install pm2@4 -g
 
-# Set the working directory for Node.js server
-WORKDIR /app/server
 
-# Copy Node.js application files
-COPY server/package.json ./package.json
-COPY server/server.js ./server.js
 
-# Install Node.js dependencies
-RUN npm install
+COPY CodeEditor/server.js ./server.js
+
 
 # Define PM2 configuration inline and write it to ecosystem.config.js
 RUN echo "module.exports = { apps: [{ name: 'node-server', script: 'server.js', watch: true, env: { NODE_ENV: 'production', PORT: 5000 } }] };" > ecosystem.config.js
