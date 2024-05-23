@@ -11,7 +11,7 @@ COPY CodeEditor/package.json ../CodeEditor/package-lock.json ./
 RUN npm install --legacy-peer-deps
 
 # Copy the rest of the application code and configuration files
-COPY . .
+COPY CodeEditor/* .
 #COPY CodeEditor/src ./src
 
 # Build the React application
