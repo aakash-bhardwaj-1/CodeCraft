@@ -80,6 +80,8 @@ environment {
                 sh "docker build -t ${DOCKERHUB_USER}/candidatefrontend -f Dockerfiles/CandidateFrontendDockerfile ."
                 sh "docker build -t ${DOCKERHUB_USER}/interviewerfrontend -f Dockerfiles/InterviewerFrontendDockerfile ."
                 sh "docker build -t ${DOCKERHUB_USER}/codeeditor -f Dockerfiles/CodeEditorDockerfile ."
+                sh "docker build -t ${DOCKERHUB_USER}/codeeditor -f Dockerfiles/CodeEditorBackendDockerfile ."
+                    
             }
         }
             
@@ -102,6 +104,7 @@ environment {
                 //sh "docker push ${DOCKERHUB_USER}/candidatefrontend"
                 //sh "docker push ${DOCKERHUB_USER}/interviewerfrontend"
                 sh "docker push ${DOCKERHUB_USER}/codeeditor"
+                sh "docker push ${DOCKERHUB_USER}/codeeditorbackend"
             }   
         }
          stage('Clean Up Local Images') {
