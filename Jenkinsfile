@@ -80,7 +80,7 @@ environment {
                 sh "docker build -t ${DOCKERHUB_USER}/candidatefrontend -f Dockerfiles/CandidateFrontendDockerfile ."
                 sh "docker build -t ${DOCKERHUB_USER}/interviewerfrontend -f Dockerfiles/InterviewerFrontendDockerfile ."
                 sh "docker build -t ${DOCKERHUB_USER}/codeeditor -f Dockerfiles/CodeEditorDockerfile ."
-                sh "docker build -t ${DOCKERHUB_USER}/codeeditor -f Dockerfiles/CodeEditorBackendDockerfile ."
+                sh "docker build -t ${DOCKERHUB_USER}/codeeditorbackend -f Dockerfiles/CodeEditorBackendDockerfile ."
                     
             }
         }
