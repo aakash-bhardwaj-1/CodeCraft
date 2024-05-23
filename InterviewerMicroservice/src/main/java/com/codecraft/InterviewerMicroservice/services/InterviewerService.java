@@ -2,6 +2,7 @@ package com.codecraft.InterviewerMicroservice.services;
 
 import com.codecraft.InterviewerMicroservice.dto.*;
 import com.codecraft.InterviewerMicroservice.entities.Enrollment;
+import com.codecraft.InterviewerMicroservice.entities.InterviewRecord;
 import com.codecraft.InterviewerMicroservice.entities.Job;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public interface InterviewerService {
     Optional<JobForCandidateMicroserviceDTO> getJob(long id);
      boolean candidateCodeEditorCheck(CandidateCheckDTO CandidateCheckDTO);
     boolean interviewerCodeEditorCheck(String interviewerEmail);
+    InterviewRecord checkResults(int enrollId);
 
 //    boolean postInterviewRecord(PostInterviewRecordDTO postInterviewRecordRequest);
 

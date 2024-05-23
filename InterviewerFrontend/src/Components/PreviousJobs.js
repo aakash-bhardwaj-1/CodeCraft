@@ -22,7 +22,7 @@ const PreviousJobs = () => {
   ]);
 
   return (
-    <div className=" dark:bg-gray-900 rounded-lg">
+    <div className=" dark:bg-gray-900 rounded-lg py-2">
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 rounded-lg ">
         <caption className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Previous Jobs Postings</caption>
         <thead className="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-900 dark:text-gray-400 rounded-lg">

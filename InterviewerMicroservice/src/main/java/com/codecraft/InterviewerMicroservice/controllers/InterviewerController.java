@@ -1,6 +1,7 @@
 package com.codecraft.InterviewerMicroservice.controllers;
 
 import com.codecraft.InterviewerMicroservice.dto.*;
+import com.codecraft.InterviewerMicroservice.entities.InterviewRecord;
 import com.codecraft.InterviewerMicroservice.entities.Job;
 import com.codecraft.InterviewerMicroservice.services.InterviewerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -119,6 +120,11 @@ public class InterviewerController {
     public boolean interviewerCheck(@PathVariable String interviewerEmail){
         System.out.println(interviewerEmail);
         return interviewerService.interviewerCodeEditorCheck(interviewerEmail);
+    }
+    @GetMapping("/result/{enrollId}")
+    public InterviewRecord results(@PathVariable int enrollId){
+
+        return interviewerService.checkResults(enrollId);
     }
 
 //    @PostMapping("/job/interviewRecord")

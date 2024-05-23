@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import logo from '../Assets/login.png'; // Import the image
+import { BASE_URL } from '../config';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -14,7 +15,7 @@ const Login = () => {
     setError(''); // Clear previous errors
 
     try {
-      const response = await axios.post('http://localhost:8081/interviewer/login', {
+      const response = await axios.post(`${BASE_URL}/interviewer/login`, {
         email,
         password,
       });
@@ -23,8 +24,8 @@ const Login = () => {
       if (response.status === 200) {
         
         const interviewer_id = parseInt(response.data);
-        console.log(interviewer_id);
-        navigate('/dashboard',{state:{interviewer_id}});
+        localStorage.setItem("interviewer_id",interviewer_id)
+        navigate('/dashboard');
       } else {
         setError('Invalid login credentials');
       }

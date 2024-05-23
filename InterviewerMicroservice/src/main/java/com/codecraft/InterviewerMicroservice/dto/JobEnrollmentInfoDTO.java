@@ -15,6 +15,7 @@ public class JobEnrollmentInfoDTO {
     private String candidateName;
     private String testScore;
     private Date interviewDate;
+    private boolean resultStatus;
     private String roomId;
 
 //    private Long interviewRecordId;

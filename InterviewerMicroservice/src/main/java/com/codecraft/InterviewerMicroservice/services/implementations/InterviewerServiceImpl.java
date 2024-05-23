@@ -187,11 +187,23 @@ return jobEnrollmentInfoDTO;
     @Override
     public List<JobEnrollmentInfoDTO> getJobEnrollments(Long jobId) {
         List<Enrollment> enrollments = enrollmentRepository.findByJobId(jobId);
-        return enrollments.stream()
-                .map(this::mapToJobEnrollmentInfoDTO)
-                .collect(Collectors.toList());
+        List<JobEnrollmentInfoDTO> jobEnrollmentInfoDTOs = new ArrayList<>();
+
+        for (Enrollment enrollment : enrollments) {
+            JobEnrollmentInfoDTO dto = mapToJobEnrollmentInfoDTO(enrollment);
+            if(interviewRecordRepository.findByEnrollment(enrollment)!=null)
+                dto.setResultStatus(true);
+
+            jobEnrollmentInfoDTOs.add(dto);
+        }
+        return jobEnrollmentInfoDTOs;
     }
-@Override
+    @Override
+    public InterviewRecord checkResults(int enrollId){
+        Optional<Enrollment> enroll = enrollmentRepository.findById(Long.valueOf(enrollId));
+        return(interviewRecordRepository.findByEnrollment(enroll.get()));
+    }
+        @Override
     public void scheduleInterview(ScheduleInterviewDTO dto) {
         Optional<Enrollment> enrollment = enrollmentRepository.findById(dto.getEnrollId());
         Enrollment enrollmentDate = enrollment.get();

@@ -6,6 +6,7 @@ import Layout from "./Pages/Layout.js";
 import ViewPreviousJobs from "./Pages/ViewPreviousJobs.js";
 import ViewActiveJobs from "./Pages/ViewActiveJobs.js";
 import ViewEnrollments from "./Pages/ViewEnrollments.js";
+import SeeResult from "./Pages/SeeResult.js";
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
                 <Route path="/active-jobs-view" element={<ViewEnrollments />} />
                 <Route path="/view-more-prev" element={<ViewPreviousJobs/>} />
                 <Route path="/view-more-open" element={<ViewActiveJobs/>} />
+                <Route path="/view-result" element={<SeeResult/>} />
         </Route>
 
         
