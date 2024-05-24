@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -22,7 +23,7 @@ public class JobPostingDTO {
     private String roleType;
     private int interviewerId;
     private int experience;
-    private Set<String> requirements;
+    private Set<String> requirements = new HashSet<>();
 }
 
 
