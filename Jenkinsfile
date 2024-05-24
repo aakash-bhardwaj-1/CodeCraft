@@ -120,5 +120,15 @@ environment {
                 sh "docker rmi ${DOCKERHUB_USER}/codeeditorbackend"
             }
         }
+         stage('Run Ansible Playbook') {
+            steps {
+                script {
+                    ansiblePlaybook(
+                        playbook: 'deploy.yml',
+                        inventory: 'inventory'
+                    )
+                }
+            }
+        }
     }
 }
