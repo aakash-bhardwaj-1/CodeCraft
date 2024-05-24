@@ -63,7 +63,7 @@ const ViewActiveJobs = () => { // Correctly destructure the props
                 <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                   {job.roleType}
                 </td>
-                <td className="px-4 py-3">{job.requirements}</td>
+                <td className="px-4 py-3">{job.requirements.join(" , ")}</td>
                 <td className="px-4 py-3">{job.noOfEnrollments}</td>
                 <td className="px-4 py-3">
                 <button className="text-blue-600 dark:text-blue-400 hover:underline focus:outline-none" 

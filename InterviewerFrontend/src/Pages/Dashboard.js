@@ -8,11 +8,15 @@ import TotalJobsLogo from "../Assets/TotalOnterviews.png";
 import Navbar from '../Components/Navbar';
 import ActiveJobs from '../Components/ActiveJobs';
 import PreviousJobs from '../Components/PreviousJobs';
-import { GetJobOpenings } from '../API/APIs';
+import { GetJobClosedOpenings, GetJobOpenings } from '../API/APIs';
+import axios from 'axios';
+import { BASE_URL } from '../config';
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const [jobs, setJobs] = useState([]);
+  const [closedJobs, setClosedJobs] = useState([]);
+  const interviewer_id = localStorage.getItem("interviewer_id");
 
   const onCreateHandle = () => {
     navigate(`/create-job`);
@@ -22,14 +26,20 @@ const Dashboard = () => {
     const fetchData = async () => {
       try {
         const result = await GetJobOpenings();
+        const closedResult = await GetJobClosedOpenings();
         setJobs(result);
+        setClosedJobs(closedResult);
       } catch (error) {
         console.error("Error fetching job openings:", error);
       }
     };
 
     fetchData();
-  }, []);
+  }, [interviewer_id]);
+
+  useEffect(() => {
+    console.log("closedJobs: ", closedJobs); // Log the updated state
+  }, [closedJobs]);
 
   return (
     <div>
@@ -48,13 +58,13 @@ const Dashboard = () => {
           <Card 
             className="hover:shadow-lg" 
             heading={"Total active Jobs"} 
-            count={jobs.filter(job => job.status === 'active').length} 
+            count={jobs.length} 
             imageLink={ActiveJobsLogo}
           />
           <Card 
             className="hover:shadow-lg" 
             heading={"Closed postings"} 
-            count={jobs.filter(job => job.status === 'closed').length} 
+            count={closedJobs.length} 
             imageLink={PreviousJobsLogo}
           />
           <Card 
@@ -71,16 +81,16 @@ const Dashboard = () => {
           />
         </div>
         <div className="grid grid-cols-1 gap-3 px-4 py-2 flex-grow">
-          <div className= "flex flex-row gap-3 " >
-            <div >
-            <ActiveJobs className="p-4 w-2/3" jobs={jobs} />
-            </div>
-            <div>
-            <PreviousJobs className="p-4 w-1/3" />
-            </div>
-          
-          </div>
-        </div>
+  <div className="flex flex-row gap-3 w-full">
+    <div className="flex-grow w-2/3">
+      <ActiveJobs className="p-4" jobs={jobs} />
+    </div>
+    <div className="flex-grow w-1/3">
+      <PreviousJobs className="p-4" jobs={closedJobs} />
+    </div>
+  </div>
+</div>
+
       </div>
     </div>
   );

@@ -29,7 +29,7 @@ const ActiveJobs = ({ jobs }) => {
                 <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{element.roleType}</td>
                 <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{element.company}</td>
                 <td className="px-6 py-4 min-w-[10rem] max-w-[10rem] overflow-hidden">
-                  <div className="max-h-10 min-h-10 overflow-y-auto">{element.requirements}</div>
+                  <div className="max-h-10 min-h-10 overflow-y-auto">{element.requirements.join(' , ')}</div>
                 </td>
                 <td className="px-6 py-4">{element.noOfEnrollments}</td>
                 <td className="px-6 py-4">

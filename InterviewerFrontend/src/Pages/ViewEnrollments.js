@@ -41,6 +41,12 @@ const ViewEnrollments = () => {
     fetchData();
   }, [id, rerender]);
 
+  const closeJob = async()=>{
+    
+  await axios.post(`${BASE_URL}/interviewer/close-job/${id}`);
+  alert("Job opening closed");
+  }
+
   const handleDateSubmit = async (selectedDate) => {
     try {
       const javaSqlDate = new Date(selectedDate).toISOString().split('T')[0];
@@ -70,7 +76,7 @@ const ViewEnrollments = () => {
           <h2 className="text-xl text-white mb-4 text-center">Enrolled Candidates</h2>
         </div>
         <div>
-          <button className="bg-blue-500 text-white text-m px-6 py-3 rounded-xl">Close Job Opening</button>
+          <button className="bg-blue-500 text-white text-m px-6 py-3 rounded-xl" onClick={closeJob}>Close Job Opening</button>
         </div>
       </div>
       <div>

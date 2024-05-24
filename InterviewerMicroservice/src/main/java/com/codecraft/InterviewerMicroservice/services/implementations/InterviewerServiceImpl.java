@@ -162,11 +162,20 @@ public class InterviewerServiceImpl implements InterviewerService {
     }
 
 
-
+@Override
     public List<JobInfoDTO> getJobs(int id) {
         List<Job> jobs = jobRepository.findByInterviewerId(id);
         return jobs.stream()
                 .filter(job -> job.getStatus().equals("open"))
+                .map(this::mapJobToJobInfoDTO)
+                .collect(Collectors.toList());
+
+    }
+@Override
+    public List<JobInfoDTO> getClosedJobs(int id) {
+        List<Job> jobs = jobRepository.findByInterviewerId(id);
+        return jobs.stream()
+                .filter(job -> job.getStatus().equals("Closed"))
                 .map(this::mapJobToJobInfoDTO)
                 .collect(Collectors.toList());
 
@@ -310,9 +319,15 @@ public void interviewResult(InterviewRecordInfoDTO dto){
         result.setPositiveFeedback(dto.getPositiveFeedback());
         result.setNegativeFeedback(dto.getNegativeFeedback());
         interviewRecordRepository.save(result);
+        }
     }
-    }
+@Override
+    public void closeJob(int jobId){
+        Job job = jobRepository.findById((long) jobId).get();
+        job.setStatus("Closed");
+        jobRepository.save(job);
 
+    }
 //    @Override
 //    public boolean postInterviewRecord(PostInterviewRecordDTO postInterviewRecordRequest) {
 //        // Create and save InterviewRecord entity

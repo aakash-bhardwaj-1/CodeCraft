@@ -4,6 +4,9 @@ import com.codecraft.InterviewerMicroservice.dto.*;
 import com.codecraft.InterviewerMicroservice.entities.InterviewRecord;
 import com.codecraft.InterviewerMicroservice.entities.Job;
 import com.codecraft.InterviewerMicroservice.services.InterviewerService;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,11 +14,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-
+@Slf4j
 @RestController
 @RequestMapping("/interviewer")
 public class InterviewerController {
-
+    private static final Logger logger = LoggerFactory.getLogger(InterviewerController.class);
     @Autowired
     private InterviewerService interviewerService;
 
@@ -33,9 +36,18 @@ public class InterviewerController {
         return interviewerService.activeJobsCount(id);
 
     }
+    //for candidate fiegn client
     @GetMapping("/all-active-jobs")
     public List<Job> allactiveJobsCountController(){
-        return interviewerService.allactiveJobsCount();
+        List<Job> jobs =interviewerService.allactiveJobsCount();
+        logger.info("Info log message");
+        return jobs;
+
+    }
+
+    @GetMapping("/closed-jobs/{id}")
+    public List<JobInfoDTO> closedJobController(@PathVariable int id){
+        return interviewerService.getClosedJobs(id);
 
     }
 
@@ -135,7 +147,10 @@ public class InterviewerController {
 
         return interviewerService.checkResults(enrollId);
     }
-
+    @PostMapping("/close-job/{id}")
+    public void closeJob(@PathVariable int id){
+        interviewerService.closeJob(id);
+    }
 //    @PostMapping("/job/interviewRecord")
 //    public ResponseEntity<String> postInterviewRecord(@RequestBody PostInterviewRecordDTO postInterviewRecordRequest) {
 //        boolean status = interviewerService.postInterviewRecord(postInterviewRecordRequest);

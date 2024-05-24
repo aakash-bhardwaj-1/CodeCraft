@@ -11,17 +11,18 @@ import java.util.Optional;
 public interface InterviewerService {
     String login(String email, String password);
     int activeJobsCount(int id);
+    List<JobInfoDTO> getClosedJobs(int id);
      List<Job> allactiveJobsCount();
     String createJob(JobPostingDTO jobPostingRequest);
 
     List<JobInfoDTO> getJobs(int id);
 
     List<JobEnrollmentInfoDTO> getJobEnrollments(Long jobId);
-    public void scheduleInterview(ScheduleInterviewDTO dto);
-    public CountDTO counter(int id);
-    public void interviewResult(InterviewRecordInfoDTO dto);
+     void scheduleInterview(ScheduleInterviewDTO dto);
+     CountDTO counter(int id);
+     void interviewResult(InterviewRecordInfoDTO dto);
     boolean enrollInJob(JobEnrollDTO jobEnrollRequest);
-
+     void closeJob(int jobId);
     boolean updateTestScore(UpdateTestScoreDTO updateTestScoreRequest);
     Optional<JobForCandidateMicroserviceDTO> getJob(long id);
      boolean candidateCodeEditorCheck(CandidateCheckDTO CandidateCheckDTO);
