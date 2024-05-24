@@ -12,8 +12,10 @@
         state: present
 
     - name: Install docker-compose
-      pip:
-        name: docker-compose
+        pip:
+          name: docker-compose
+        become: true
+
 
     - name: Copy Docker Compose file
       copy:
