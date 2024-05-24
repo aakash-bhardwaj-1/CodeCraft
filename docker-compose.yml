@@ -32,7 +32,7 @@ services:
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=root
       - LOGGING_LOGSTASH_HOST=logstash
-      - LOGGING_LOGSTASH_PORT=5044
+      - LOGGING_LOGSTASH_PORT=5001
     networks:
       - codecraft-network
     depends_on:
