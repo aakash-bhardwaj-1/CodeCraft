@@ -8,7 +8,7 @@
 
     - name: Install pip
       apt:
-        name: python3-pip
+        name:  docker-compose
         state: present
 
     - name: Install docker-compose
