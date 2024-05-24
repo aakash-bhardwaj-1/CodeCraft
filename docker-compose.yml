@@ -88,9 +88,9 @@ services:
     networks:
       - codecraft-network
 
-  codeeditor:
-    image: aakashbhardwaj1/codeeditor
-    container_name: codeeditor
+  codeeditorfrontend:
+    image: aakashbhardwaj1/codeeditorfrontend
+    container_name: codeeditorfrontend
     ports:
       - "3002:80"
     networks:
