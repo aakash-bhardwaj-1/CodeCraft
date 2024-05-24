@@ -31,11 +31,12 @@ const Home = () => {
 		if (!interviewer) {
 			// enroll check
 			try {
-				const response = await axios.post('http://localhost:8000/interviewer/code-sync-candidate-check', {
-					candidateName:username,
-					roomId,
-				});
-				
+				const response = await axios.post(`http://localhost:8000/interviewer/code-sync-candidate-check/${username}`, roomId, {
+    headers: {
+        'Content-Type': 'text/plain'
+    }
+});
+
 				// If the login is successful, navigate to the editor
 				if (response.data === true) {
 					navigate(`/editor/${roomId}`, {

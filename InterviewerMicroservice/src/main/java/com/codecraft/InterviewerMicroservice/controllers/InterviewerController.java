@@ -130,11 +130,14 @@ public class InterviewerController {
         }
     }
 
-    @PostMapping("/code-sync-candidate-check")
-    public boolean candidateCheck(@RequestBody CandidateCheckDTO CandidateCheckDTO){
-        System.out.println(CandidateCheckDTO.getCandidateName());
-        System.out.println(CandidateCheckDTO.getRoomId());
-       return interviewerService.candidateCodeEditorCheck(CandidateCheckDTO);
+    @PostMapping("/code-sync-candidate-check/{candidateId}")
+    public boolean candidateCheck(@PathVariable String candidateId, @RequestBody String roomId){
+        CandidateCheckDTO dto = new CandidateCheckDTO();
+        dto.setCandidateName(candidateId);
+        dto.setRoomId(roomId);
+        System.out.println(candidateId);
+        System.out.println(roomId);
+       return interviewerService.candidateCodeEditorCheck(dto);
     }
 
     @PostMapping("/code-sync-interviewer-check/{interviewerEmail}")
