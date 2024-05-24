@@ -79,7 +79,7 @@ environment {
                 sh "docker build -t ${DOCKERHUB_USER}/candidateservice -f Dockerfiles/CandidateServiceDockerfile ."
                 sh "docker build -t ${DOCKERHUB_USER}/candidatefrontend -f Dockerfiles/CandidateFrontendDockerfile ."
                 sh "docker build -t ${DOCKERHUB_USER}/interviewerfrontend -f Dockerfiles/InterviewerFrontendDockerfile ."
-                sh "docker build -t ${DOCKERHUB_USER}/codeeditor -f Dockerfiles/CodeEditorDockerfile ."
+                sh "docker build -t ${DOCKERHUB_USER}/codeeditorfrontend -f Dockerfiles/CodeEditorFrontendDockerfile ."
                 sh "docker build -t ${DOCKERHUB_USER}/codeeditorbackend -f Dockerfiles/CodeEditorBackendDockerfile ."
                     
             }
@@ -103,7 +103,7 @@ environment {
                 //sh "docker push ${DOCKERHUB_USER}/candidateservice"
                 //sh "docker push ${DOCKERHUB_USER}/candidatefrontend"
                 //sh "docker push ${DOCKERHUB_USER}/interviewerfrontend"
-                sh "docker push ${DOCKERHUB_USER}/codeeditor"
+                sh "docker push ${DOCKERHUB_USER}/codeeditorfrontend"
                 sh "docker push ${DOCKERHUB_USER}/codeeditorbackend"
             }   
         }
@@ -116,7 +116,8 @@ environment {
                 sh "docker rmi ${DOCKERHUB_USER}/candidateservice"
                 sh "docker rmi ${DOCKERHUB_USER}/candidatefrontend"
                 sh "docker rmi ${DOCKERHUB_USER}/interviewerfrontend"
-                sh "docker rmi ${DOCKERHUB_USER}/codeeditor"
+                sh "docker rmi ${DOCKERHUB_USER}/codeeditorfrontend"
+                sh "docker rmi ${DOCKERHUB_USER}/codeeditorbackend"
             }
         }
     }
