@@ -21,7 +21,8 @@ const ViewEnrollments = () => {
   };
   
   const ViewInterviewHandler = (jobId, roomId) => {
-    alert(jobId + roomId);
+    alert( 'Room ID: '+roomId+' Date:' + jobId);
+
   };
 
   const seeResultHandler= (enrollId)=>{

@@ -97,14 +97,14 @@ environment {
             stage('Push Images') {
             steps {
                 echo 'Push Docker Images'
-                sh "docker push ${DOCKERHUB_USER}/eurekaregistry"
-                sh "docker push ${DOCKERHUB_USER}/apigateway"
-                sh "docker push ${DOCKERHUB_USER}/interviewerservice"
-                sh "docker push ${DOCKERHUB_USER}/candidateservice"
-                sh "docker push ${DOCKERHUB_USER}/candidatefrontend"
-                sh "docker push ${DOCKERHUB_USER}/interviewerfrontend"
-                sh "docker push ${DOCKERHUB_USER}/codeeditorfrontend"
-                sh "docker push ${DOCKERHUB_USER}/codeeditorbackend"
+                // sh "docker push ${DOCKERHUB_USER}/eurekaregistry"
+                // sh "docker push ${DOCKERHUB_USER}/apigateway"
+                // sh "docker push ${DOCKERHUB_USER}/interviewerservice"
+                // sh "docker push ${DOCKERHUB_USER}/candidateservice"
+                // sh "docker push ${DOCKERHUB_USER}/candidatefrontend"
+                // sh "docker push ${DOCKERHUB_USER}/interviewerfrontend"
+                // sh "docker push ${DOCKERHUB_USER}/codeeditorfrontend"
+                // sh "docker push ${DOCKERHUB_USER}/codeeditorbackend"
             }   
         }
          stage('Clean Up Local Images') {
@@ -118,6 +118,16 @@ environment {
                 sh "docker rmi ${DOCKERHUB_USER}/interviewerfrontend"
                 sh "docker rmi ${DOCKERHUB_USER}/codeeditorfrontend"
                 sh "docker rmi ${DOCKERHUB_USER}/codeeditorbackend"
+            }
+        }
+         stage('Run Ansible Playbook') {
+            steps {
+                script {
+                    ansiblePlaybook(
+                        playbook: 'deploy.yml',
+                        inventory: 'inventory'
+                    )
+                }
             }
         }
     }
