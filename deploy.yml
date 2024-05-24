@@ -8,12 +8,13 @@
 
     - name: Install pip
       apt:
-        name: docker-compose
+        name: python3-pip
         state: present
 
     - name: Install docker-compose
       pip:
         name: docker-compose
+        state: present
       become: true
 
     - name: Copy Docker Compose file
@@ -24,6 +25,6 @@
     - name: Run docker compose up command
       become: true
       docker_compose:
-        project_src: ./
+        project_src: .
         state: present
         pull: yes
