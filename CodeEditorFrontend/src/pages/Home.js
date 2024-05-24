@@ -32,6 +32,7 @@ const Home = () => {
 			// enroll check
 			try {
 				const response = await axios.post('http://localhost:8000/interviewer/code-sync-candidate-check', {
+					candidateName:username,
 					roomId,
 				});
 				
