@@ -1,18 +1,8 @@
-- name: Ensure Docker Compose is running
-  hosts: all
-  become: true
+- name: Run Docker Compose script
+  hosts: localhost
+ # become: yes
   tasks:
-    - name: Start Docker service
-      service:
-        name: docker
-        state: started
-
-    - name: Copy Docker Compose file to the target directory
-      copy:
-        src: /path/to/your/local/docker-compose.yml
-        dest: /var/lib/jenkins/workspace/eth-project/docker-compose.yml
-
-    - name: Run Docker Compose
+    - name: Start Docker Compose services
       shell: docker-compose up -d
       args:
         chdir: /var/lib/jenkins/workspace/eth-project/
