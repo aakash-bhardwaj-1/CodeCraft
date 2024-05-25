@@ -1,19 +1,18 @@
-- name: Use docker compose to run all containers
+- name: Ensure Docker Compose is running
   hosts: all
+  become: true
   tasks:
-    - name: Start docker service
+    - name: Start Docker service
       service:
         name: docker
         state: started
 
-    - name: Copy Docker Compose file
+    - name: Copy Docker Compose file to the target directory
       copy:
-        src: docker-compose.yml
-        dest: ./
+        src: /path/to/your/local/docker-compose.yml
+        dest: /var/lib/jenkins/workspace/eth-project/docker-compose.yml
 
-    - name: Run docker compose up command
-      become: true
-      docker_compose:
-        project_src: ./
-        state: present
-        pull: yes
+    - name: Run Docker Compose
+      shell: docker-compose up -d
+      args:
+        chdir: /var/lib/jenkins/workspace/eth-project/
