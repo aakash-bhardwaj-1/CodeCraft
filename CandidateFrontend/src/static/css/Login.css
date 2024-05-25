@@ -1,8 +1,14 @@
+.mainContainer {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
 .login {
     
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-self: center;
 }
 
 .login-bg img {
@@ -37,6 +43,7 @@
     width: 650px;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .content h1 {
@@ -56,7 +63,7 @@
 
 .login-input {
     display: inline-flex;
-    width: 100%;
+    max-width: 400px;
     margin: 10px 0;
     background: #f0f0f0;
     border-radius: 6px;
@@ -109,6 +116,10 @@
   outline: none;
 } */
 
+.login-input i {
+    color: #1f2937;
+}
+
 .login-input .fa-eye,
 .login-input .fa-eye-slash {
     display: inline-flex;
@@ -145,7 +156,7 @@
     padding: 10px 55px;
     font-size: 22px;
     border-radius: 20px;
-    margin: 10px auto;
+    margin: 5px auto;
     text-align: center;
 }
 

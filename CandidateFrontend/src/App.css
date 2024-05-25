@@ -5,15 +5,15 @@
     list-style: none;
     text-decoration: none;
     font-family: "Lato", sans-serif;
+    
 }
 
 :root {
     
-    
     --red: #f40d30;
     /* --primary: #0093E4; */
     /* --primary: #150b8c; */
-    --primary: #150b8c;
+    --primary: #4aed88;
     --primary-dark: #0073C2;
     --green: #009879;
     --yellow: #FFDF00;
@@ -34,7 +34,8 @@ button {
 }
 
 body {
-    background: linear-gradient(45deg, #fff, #f5f5f5);
+    background: rgb(31 41 55);;
+    color: #fff;
 }
 
 ::placeholder {

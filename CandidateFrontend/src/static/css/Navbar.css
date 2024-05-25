@@ -9,9 +9,9 @@
     flex-direction: column;
     padding-left: 10%;
     padding-right: 10%;
-    -webkit-box-shadow: 0 4px 6px -6px #222;
-    -moz-box-shadow: 0 4px 6px -6px #222;
-    box-shadow: 4px 6px 4px -6px #222;
+    -webkit-box-shadow: 0 4px 6px -6px #ddd;
+    -moz-box-shadow: 0 4px 6px -6px #ddd;
+    box-shadow: 4px 6px 4px -6px #ddd;
     font-family: "Lato", sans-serif;
 }
 
@@ -59,7 +59,7 @@
 }
 
 .nav-heading>span:hover {
-    color: var(--primary-hover);
+    color: #ddd;
 }
 
 

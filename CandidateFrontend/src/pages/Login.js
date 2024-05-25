@@ -18,18 +18,24 @@ function Login() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			await console.log("api call to localhost:8000")
-			const response = await axios.post("http://localhost:8000/candidate/login", { email, password });
+			await console.log("api call to localhost:8000");
+			const response = await axios.post(
+				"http://localhost:8000/candidate/login",
+				{ email, password }
+			);
 			console.log(response.data);
 			// If the login is successful, navigate to the dashboard
 			if (response.status === 200) {
 				const id = parseInt(response.data); // Adjust this according to your API response structure
 				localStorage.setItem("candidateId", id);
-				navigate('/candidate-dashboard');
+				navigate("/candidate-dashboard");
 				console.log("Received id: " + id);
-				console.log("Local Storage id: " + localStorage.getItem("candidateId"));
+				console.log(
+					"Local Storage id: " +
+						localStorage.getItem("candidateId")
+				);
 			} else {
-				setError('Invalid login credentials');
+				setError("Invalid login credentials");
 			}
 		} catch (err) {
 			setError("Invalid email or password or exception"); // Set error message for invalid credentials
@@ -37,15 +43,13 @@ function Login() {
 	};
 
 	return (
-		<div>
-			<div className="nav-heading">
-						<span>
-							CodeCraft Candidate App
-						</span>
-			</div>
-			<PageHeading title="Login" />
+		<div className="mainContainer">
+			{/* <div className="nav-heading">
+				<span>CodeCraft Candidate App</span>
+			</div> */}
+			{/* <PageHeading title="Login" /> */}
 			<div className="login">
-				<LoginBG />
+				{/* <LoginBG /> */}
 				<div className="content">
 					<div className="greetings">
 						<h1 className="greetings-1">Welcome to</h1>
@@ -70,7 +74,9 @@ function Login() {
 							required
 						/>
 						<br />
-						{error && <div className="error-message">{error}</div>}
+						{error && (
+							<div className="error-message">{error}</div>
+						)}
 						<div className="login-submit">
 							<button type="submit" className="login-btn">
 								Login

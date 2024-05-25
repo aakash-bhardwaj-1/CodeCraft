@@ -22,7 +22,7 @@ function ViewJobs() {
             console.log('Job application submitted:', dto);
             // After applying, fetch the updated list of applied jobs and update the table
             fetchAppliedJobs();
-			alert("Interview schedule will be notified via e-mail");
+            alert("Interview schedule will be notified via e-mail");
         } catch (error) {
             console.error('Error applying for job:', error);
         }
@@ -51,11 +51,19 @@ function ViewJobs() {
     };
 
     const renderViewButton = (id, company, isApplied) => {
+        const buttonStyle = {
+            color: 'white'
+        };
+
         if (isApplied) {
-            return <button className="view-button" disabled>Applied</button>;
+            return <button className="view-button" disabled style={buttonStyle}>Applied</button>;
         } else {
             return (
-                <button onClick={() => handleViewClick(id, company, localStorage.getItem("candidateId"))} className="view-button">
+                <button 
+                    onClick={() => handleViewClick(id, company, localStorage.getItem("candidateId"))} 
+                    className="view-button" 
+                    style={buttonStyle}
+                >
                     Apply
                 </button>
             );
@@ -95,16 +103,18 @@ function ViewJobs() {
         <div>
             <Navbar />
             <PageHeading title="Available Jobs" />
-            <Table 
-                columns={columns}
-                data={tableData.map(row => ({
-                    "Company Name": row.company,
-                    "Job Role": row.roleType,
-                    "Job Description": row.jobDescription,
-                    "Requirements": row.allRequirements.map(req => req.requirementName).join(', '),
-                    "Apply": renderViewButton(row.id, row.company, row.applied), // Pass the applied flag
-                }))}
-            /> 
+            <div style={{ paddingLeft: '20px', paddingRight: '20px' }}>
+                <Table 
+                    columns={columns}
+                    data={tableData.map(row => ({
+                        "Company Name": row.company,
+                        "Job Role": row.roleType,
+                        "Job Description": row.jobDescription,
+                        "Requirements": row.allRequirements.map(req => req.requirementName).join(', '),
+                        "Apply": renderViewButton(row.id, row.company, row.applied), // Pass the applied flag
+                    }))}
+                /> 
+            </div>
         </div>
     );
 }
