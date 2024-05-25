@@ -106,19 +106,54 @@ environment {
                 // sh "docker push ${DOCKERHUB_USER}/codeeditorbackend"
             }   
         }
-         stage('Clean Up Local Images') {
-            steps {
-                echo 'Cleaning Up Local Docker Images'
+stage('Clean Up Local Images') {
+    steps {
+        echo 'Cleaning Up Local Docker Images'
+        script {
+            // Check if each image exists before attempting to remove it
+            def images = sh(script: 'docker images -q ${DOCKERHUB_USER}/eurekaregistry', returnStdout: true).trim()
+            if (images) {
                 sh "docker rmi ${DOCKERHUB_USER}/eurekaregistry"
+            }
+
+            images = sh(script: 'docker images -q ${DOCKERHUB_USER}/apigateway', returnStdout: true).trim()
+            if (images) {
                 sh "docker rmi ${DOCKERHUB_USER}/apigateway"
+            }
+
+            images = sh(script: 'docker images -q ${DOCKERHUB_USER}/interviewerservice', returnStdout: true).trim()
+            if (images) {
                 sh "docker rmi ${DOCKERHUB_USER}/interviewerservice"
+            }
+
+            images = sh(script: 'docker images -q ${DOCKERHUB_USER}/candidateservice', returnStdout: true).trim()
+            if (images) {
                 sh "docker rmi ${DOCKERHUB_USER}/candidateservice"
+            }
+
+            images = sh(script: 'docker images -q ${DOCKERHUB_USER}/candidatefrontend', returnStdout: true).trim()
+            if (images) {
                 sh "docker rmi ${DOCKERHUB_USER}/candidatefrontend"
+            }
+
+            images = sh(script: 'docker images -q ${DOCKERHUB_USER}/interviewerfrontend', returnStdout: true).trim()
+            if (images) {
                 sh "docker rmi ${DOCKERHUB_USER}/interviewerfrontend"
+            }
+
+            images = sh(script: 'docker images -q ${DOCKERHUB_USER}/codeeditorfrontend', returnStdout: true).trim()
+            if (images) {
                 sh "docker rmi ${DOCKERHUB_USER}/codeeditorfrontend"
+            }
+
+            images = sh(script: 'docker images -q ${DOCKERHUB_USER}/codeeditorbackend', returnStdout: true).trim()
+            if (images) {
                 sh "docker rmi ${DOCKERHUB_USER}/codeeditorbackend"
             }
         }
+    }
+}
+
 stage('Run ansible playbook'){
             steps{
                 echo 'Running the ansible playbook yml file'
