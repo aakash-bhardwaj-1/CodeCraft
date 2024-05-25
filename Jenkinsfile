@@ -72,7 +72,7 @@ environment {
     
             stage('Build Docker Images') {
             steps {
-                // echo 'Building Docker Images'
+                 echo 'Building Docker Images'
                 // sh "docker build -t ${DOCKERHUB_USER}/eurekaregistry -f Dockerfiles/ServiceRegistryDockerfile ."
                 // sh "docker build -t ${DOCKERHUB_USER}/apigateway -f Dockerfiles/APIGatewayServiceDockerfile ."
                 // sh "docker build -t ${DOCKERHUB_USER}/interviewerservice -f Dockerfiles/InterviewerServiceDockerfile ."
