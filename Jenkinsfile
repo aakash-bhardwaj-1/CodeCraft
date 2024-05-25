@@ -106,59 +106,24 @@ environment {
                 // sh "docker push ${DOCKERHUB_USER}/codeeditorbackend"
             }   
         }
-stage('Clean Up Local Images') {
-    steps {
-        echo 'Cleaning Up Local Docker Images'
-        script {
-            // Check if each image exists before attempting to remove it
-            def images = sh(script: 'docker images -q ${DOCKERHUB_USER}/eurekaregistry', returnStdout: true).trim()
-            if (images) {
-                sh "docker rmi ${DOCKERHUB_USER}/eurekaregistry"
+         stage('Clean Up Local Images') {
+                    steps {
+                        echo 'Cleaning Up Local Docker Images'
+                        sh "docker rmi ${DOCKERHUB_USER}/eurekaregistry"
+                        sh "docker rmi ${DOCKERHUB_USER}/apigateway"
+                        sh "docker rmi ${DOCKERHUB_USER}/interviewerservice"
+                        sh "docker rmi ${DOCKERHUB_USER}/candidateservice"
+                        sh "docker rmi ${DOCKERHUB_USER}/candidatefrontend"
+                        sh "docker rmi ${DOCKERHUB_USER}/interviewerfrontend"
+                        sh "docker rmi ${DOCKERHUB_USER}/codeeditorfrontend"
+                        sh "docker rmi ${DOCKERHUB_USER}/codeeditorbackend"
+                    }
+                }
+        stage('Run ansible playbook'){
+                    steps{
+                        echo 'Running the ansible playbook yml file'
+                        sh 'export LC_ALL=en_IN.UTF-8;export LANG=en_US.UTF-8;ansible-playbook -i inventory deploy.yml'
+                    }
+                }
             }
-
-            images = sh(script: 'docker images -q ${DOCKERHUB_USER}/apigateway', returnStdout: true).trim()
-            if (images) {
-                sh "docker rmi ${DOCKERHUB_USER}/apigateway"
-            }
-
-            images = sh(script: 'docker images -q ${DOCKERHUB_USER}/interviewerservice', returnStdout: true).trim()
-            if (images) {
-                sh "docker rmi ${DOCKERHUB_USER}/interviewerservice"
-            }
-
-            images = sh(script: 'docker images -q ${DOCKERHUB_USER}/candidateservice', returnStdout: true).trim()
-            if (images) {
-                sh "docker rmi ${DOCKERHUB_USER}/candidateservice"
-            }
-
-            images = sh(script: 'docker images -q ${DOCKERHUB_USER}/candidatefrontend', returnStdout: true).trim()
-            if (images) {
-                sh "docker rmi ${DOCKERHUB_USER}/candidatefrontend"
-            }
-
-            images = sh(script: 'docker images -q ${DOCKERHUB_USER}/interviewerfrontend', returnStdout: true).trim()
-            if (images) {
-                sh "docker rmi ${DOCKERHUB_USER}/interviewerfrontend"
-            }
-
-            images = sh(script: 'docker images -q ${DOCKERHUB_USER}/codeeditorfrontend', returnStdout: true).trim()
-            if (images) {
-                sh "docker rmi ${DOCKERHUB_USER}/codeeditorfrontend"
-            }
-
-            images = sh(script: 'docker images -q ${DOCKERHUB_USER}/codeeditorbackend', returnStdout: true).trim()
-            if (images) {
-                sh "docker rmi ${DOCKERHUB_USER}/codeeditorbackend"
-            }
-        }
-    }
-}
-
-stage('Run ansible playbook'){
-            steps{
-                echo 'Running the ansible playbook yml file'
-                sh 'export LC_ALL=en_IN.UTF-8;export LANG=en_US.UTF-8;ansible-playbook -i inventory deploy.yml'
-            }
-        }
-    }
 }
