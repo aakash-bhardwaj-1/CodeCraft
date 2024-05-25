@@ -1,8 +1,16 @@
-- name: Run Docker Compose script
-  hosts: localhost
- # become: yes
+- name: Use docker compose to run all containers
+  hosts: all
   tasks:
-    - name: Start Docker Compose services
-      shell: docker-compose up -d
-      args:
-        chdir: /var/lib/jenkins/workspace/eth-project/
+    - name: Start docker service
+      service:
+        name: docker
+        state: started
+
+    - name: Copy Docker Compose file
+      copy:
+        src: docker-compose.yml
+        dest: /root/
+
+    - name: Run docker compose up command
+      become: true
+      command: docker-compose -f /root/docker-compose.yml up -d --force-recreate
