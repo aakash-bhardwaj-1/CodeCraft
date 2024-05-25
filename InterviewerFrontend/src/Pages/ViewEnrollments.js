@@ -86,8 +86,7 @@ const ViewEnrollments = () => {
           <thead className="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-900 dark:text-gray-400">
             <tr>
               <th scope="col" className="px-4 py-3">Candidate Name</th>
-              <th scope="col" className="px-4 py-3">OA Score</th>
-              <th scope="col" className="px-4 py-3">Job ID</th>
+              <th scope="col" className="px-4 py-3">Interview Date</th>
               <th scope="col" className="px-4 py-3">Action</th>
               <th scope="col" className="px-4 py-3">Result</th>
             </tr>
@@ -99,11 +98,9 @@ const ViewEnrollments = () => {
                   {job.candidateName}
                 </td>
                 <td className="px-6 py-4">
-                  not implemented
+                  {job.interviewDate ? job.interviewDate : "Interview Date Not Available"}
                 </td>
-                <td className="px-6 py-4">
-                  {job.enrollId}
-                </td>
+
                 <td className="px-6 py-4">
                   {job.interviewDate ? (
                     <span className="text-xs bg-green-200 text-green-800 rounded-full px-2 py-1" onClick={() => ViewInterviewHandler(job.interviewDate,job.roomId)}>

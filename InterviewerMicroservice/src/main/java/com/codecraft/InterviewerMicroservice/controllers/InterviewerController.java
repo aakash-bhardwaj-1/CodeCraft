@@ -50,7 +50,9 @@ public class InterviewerController {
 
     @GetMapping("/closed-jobs/{id}")
     public List<JobInfoDTO> closedJobController(@PathVariable int id){
+
         logger.info("Request to close job received: " + id);
+
         return interviewerService.getClosedJobs(id);
 
     }
