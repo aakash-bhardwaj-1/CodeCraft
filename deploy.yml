@@ -1,25 +1,10 @@
-- name: Use docker compose to run all containers
-  hosts: all
+- name: Run Docker Compose
+  hosts: localhost
+  remote_user: aakash
+  connection: local
+  gather_facts: no
   tasks:
-    - name: Start docker service
-      service:
-        name: docker
-        state: started
-
-    - name: Copy Docker Compose file
-      copy:
-        src: docker-compose.yml
-        dest: ./
-        
-    - name: Copy Env file
-      copy:
-        src: docker_namespace.env
-        dest: ./
-
-    - name: Run docker compose up command
-      become: true
-      docker_compose:
-        env_file: ./docker_namespace.env
-        project_src: ./
-        state: present
-        pull: yes
+    - name: Run Docker Compose
+      command: docker-compose up -d
+      args:
+        chdir: /var/lib/jenkins/workspace/spe-major-project
