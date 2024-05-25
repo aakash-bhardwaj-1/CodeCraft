@@ -59,8 +59,8 @@ environment {
                     steps {
                         echo 'Building Interviewer Service'
                         //username and password are provided for integration testing of server with mysql otherwise, no requirement
-                        // sh "cd InterviewerMicroservice && mvn clean install"
-                        // sh 'mv -f InterviewerMicroservice/target/InterviewerMicroservice-0.0.1-SNAPSHOT.jar JarFiles/'
+                        sh "cd InterviewerMicroservice && mvn clean install"
+                        sh 'mv -f InterviewerMicroservice/target/InterviewerMicroservice-0.0.1-SNAPSHOT.jar JarFiles/'
                     }
                 }
 
@@ -97,14 +97,14 @@ environment {
             stage('Push Images') {
             steps {
                 echo 'Push Docker Images'
-                // sh "docker push ${DOCKERHUB_USER}/eurekaregistry"
-                // sh "docker push ${DOCKERHUB_USER}/apigateway"
-                // sh "docker push ${DOCKERHUB_USER}/interviewerservice"
-                // sh "docker push ${DOCKERHUB_USER}/candidateservice"
-                // sh "docker push ${DOCKERHUB_USER}/candidatefrontend"
-                // sh "docker push ${DOCKERHUB_USER}/interviewerfrontend"
-                // sh "docker push ${DOCKERHUB_USER}/codeeditorfrontend"
-                // sh "docker push ${DOCKERHUB_USER}/codeeditorbackend"
+                sh "docker push ${DOCKERHUB_USER}/eurekaregistry"
+                sh "docker push ${DOCKERHUB_USER}/apigateway"
+                sh "docker push ${DOCKERHUB_USER}/interviewerservice"
+                sh "docker push ${DOCKERHUB_USER}/candidateservice"
+                sh "docker push ${DOCKERHUB_USER}/candidatefrontend"
+                sh "docker push ${DOCKERHUB_USER}/interviewerfrontend"
+                sh "docker push ${DOCKERHUB_USER}/codeeditorfrontend"
+                sh "docker push ${DOCKERHUB_USER}/codeeditorbackend"
             }   
         }
          stage('Clean Up Local Images') {
