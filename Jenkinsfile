@@ -59,8 +59,8 @@ environment {
                     steps {
                         echo 'Building Interviewer Service'
                         //username and password are provided for integration testing of server with mysql otherwise, no requirement
-                        sh "cd InterviewerMicroservice && mvn clean install"
-                        sh 'mv -f InterviewerMicroservice/target/InterviewerMicroservice-0.0.1-SNAPSHOT.jar JarFiles/'
+                        // sh "cd InterviewerMicroservice && mvn clean install"
+                        // sh 'mv -f InterviewerMicroservice/target/InterviewerMicroservice-0.0.1-SNAPSHOT.jar JarFiles/'
                     }
                 }
 
@@ -72,15 +72,15 @@ environment {
     
             stage('Build Docker Images') {
             steps {
-                echo 'Building Docker Images'
-                sh "docker build -t ${DOCKERHUB_USER}/eurekaregistry -f Dockerfiles/ServiceRegistryDockerfile ."
-                sh "docker build -t ${DOCKERHUB_USER}/apigateway -f Dockerfiles/APIGatewayServiceDockerfile ."
-                sh "docker build -t ${DOCKERHUB_USER}/interviewerservice -f Dockerfiles/InterviewerServiceDockerfile ."
-                sh "docker build -t ${DOCKERHUB_USER}/candidateservice -f Dockerfiles/CandidateServiceDockerfile ."
-                sh "docker build -t ${DOCKERHUB_USER}/candidatefrontend -f Dockerfiles/CandidateFrontendDockerfile ."
-                sh "docker build -t ${DOCKERHUB_USER}/interviewerfrontend -f Dockerfiles/InterviewerFrontendDockerfile ."
-                sh "docker build -t ${DOCKERHUB_USER}/codeeditorfrontend -f Dockerfiles/CodeEditorFrontendDockerfile ."
-                sh "docker build -t ${DOCKERHUB_USER}/codeeditorbackend -f Dockerfiles/CodeEditorBackendDockerfile ."
+                // echo 'Building Docker Images'
+                // sh "docker build -t ${DOCKERHUB_USER}/eurekaregistry -f Dockerfiles/ServiceRegistryDockerfile ."
+                // sh "docker build -t ${DOCKERHUB_USER}/apigateway -f Dockerfiles/APIGatewayServiceDockerfile ."
+                // sh "docker build -t ${DOCKERHUB_USER}/interviewerservice -f Dockerfiles/InterviewerServiceDockerfile ."
+                // sh "docker build -t ${DOCKERHUB_USER}/candidateservice -f Dockerfiles/CandidateServiceDockerfile ."
+                // sh "docker build -t ${DOCKERHUB_USER}/candidatefrontend -f Dockerfiles/CandidateFrontendDockerfile ."
+                // sh "docker build -t ${DOCKERHUB_USER}/interviewerfrontend -f Dockerfiles/InterviewerFrontendDockerfile ."
+                // sh "docker build -t ${DOCKERHUB_USER}/codeeditorfrontend -f Dockerfiles/CodeEditorFrontendDockerfile ."
+                // sh "docker build -t ${DOCKERHUB_USER}/codeeditorbackend -f Dockerfiles/CodeEditorBackendDockerfile ."
                     
             }
         }
