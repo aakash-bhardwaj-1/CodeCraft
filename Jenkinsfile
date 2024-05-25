@@ -48,8 +48,8 @@ environment {
                         echo 'Building Candidate Service'
                             mvnHome = tool "mvn"
                         //username and password are provided for integration testing of server with mysql otherwise, no requirement
-                        sh "cd CandidateMicroservice && ${mvnHome}/bin/mvn clean package"
-                        sh 'mv -f CandidateMicroservice/target/CandidateMicroservice-0.0.1-SNAPSHOT.jar JarFiles/'
+                        // sh "cd CandidateMicroservice && ${mvnHome}/bin/mvn clean package"
+                        // sh 'mv -f CandidateMicroservice/target/CandidateMicroservice-0.0.1-SNAPSHOT.jar JarFiles/'
                     }
                     }
                 }
@@ -73,14 +73,14 @@ environment {
             stage('Build Docker Images') {
             steps {
                  echo 'Building Docker Images'
-                sh "docker build -t ${DOCKERHUB_USER}/eurekaregistry -f Dockerfiles/ServiceRegistryDockerfile ."
-                sh "docker build -t ${DOCKERHUB_USER}/apigateway -f Dockerfiles/APIGatewayServiceDockerfile ."
-                sh "docker build -t ${DOCKERHUB_USER}/interviewerservice -f Dockerfiles/InterviewerServiceDockerfile ."
-                sh "docker build -t ${DOCKERHUB_USER}/candidateservice -f Dockerfiles/CandidateServiceDockerfile ."
-                sh "docker build -t ${DOCKERHUB_USER}/candidatefrontend -f Dockerfiles/CandidateFrontendDockerfile ."
-                sh "docker build -t ${DOCKERHUB_USER}/interviewerfrontend -f Dockerfiles/InterviewerFrontendDockerfile ."
-                sh "docker build -t ${DOCKERHUB_USER}/codeeditorfrontend -f Dockerfiles/CodeEditorFrontendDockerfile ."
-                sh "docker build -t ${DOCKERHUB_USER}/codeeditorbackend -f Dockerfiles/CodeEditorBackendDockerfile ."
+                // sh "docker build -t ${DOCKERHUB_USER}/eurekaregistry -f Dockerfiles/ServiceRegistryDockerfile ."
+                // sh "docker build -t ${DOCKERHUB_USER}/apigateway -f Dockerfiles/APIGatewayServiceDockerfile ."
+                // sh "docker build -t ${DOCKERHUB_USER}/interviewerservice -f Dockerfiles/InterviewerServiceDockerfile ."
+                // sh "docker build -t ${DOCKERHUB_USER}/candidateservice -f Dockerfiles/CandidateServiceDockerfile ."
+                // sh "docker build -t ${DOCKERHUB_USER}/candidatefrontend -f Dockerfiles/CandidateFrontendDockerfile ."
+                // sh "docker build -t ${DOCKERHUB_USER}/interviewerfrontend -f Dockerfiles/InterviewerFrontendDockerfile ."
+                // sh "docker build -t ${DOCKERHUB_USER}/codeeditorfrontend -f Dockerfiles/CodeEditorFrontendDockerfile ."
+                // sh "docker build -t ${DOCKERHUB_USER}/codeeditorbackend -f Dockerfiles/CodeEditorBackendDockerfile ."
                     
             }
         }
@@ -96,15 +96,15 @@ environment {
 
             stage('Push Images') {
             steps {
-                echo 'Push Docker Images'
-                sh "docker push ${DOCKERHUB_USER}/eurekaregistry"
-                sh "docker push ${DOCKERHUB_USER}/apigateway"
-                sh "docker push ${DOCKERHUB_USER}/interviewerservice"
-                sh "docker push ${DOCKERHUB_USER}/candidateservice"
-                sh "docker push ${DOCKERHUB_USER}/candidatefrontend"
-                sh "docker push ${DOCKERHUB_USER}/interviewerfrontend"
-                sh "docker push ${DOCKERHUB_USER}/codeeditorfrontend"
-                sh "docker push ${DOCKERHUB_USER}/codeeditorbackend"
+                // echo 'Push Docker Images'
+                // sh "docker push ${DOCKERHUB_USER}/eurekaregistry"
+                // sh "docker push ${DOCKERHUB_USER}/apigateway"
+                // sh "docker push ${DOCKERHUB_USER}/interviewerservice"
+                // sh "docker push ${DOCKERHUB_USER}/candidateservice"
+                // sh "docker push ${DOCKERHUB_USER}/candidatefrontend"
+                // sh "docker push ${DOCKERHUB_USER}/interviewerfrontend"
+                // sh "docker push ${DOCKERHUB_USER}/codeeditorfrontend"
+                // sh "docker push ${DOCKERHUB_USER}/codeeditorbackend"
             }   
         }
          stage('Clean Up Local Images') {
