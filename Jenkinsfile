@@ -109,14 +109,14 @@ environment {
          stage('Clean Up Local Images') {
                     steps {
                         echo 'Cleaning Up Local Docker Images'
-                        sh "docker rmi ${DOCKERHUB_USER}/eurekaregistry"
-                        sh "docker rmi ${DOCKERHUB_USER}/apigateway"
-                        sh "docker rmi ${DOCKERHUB_USER}/interviewerservice"
-                        sh "docker rmi ${DOCKERHUB_USER}/candidateservice"
-                        sh "docker rmi ${DOCKERHUB_USER}/candidatefrontend"
-                        sh "docker rmi ${DOCKERHUB_USER}/interviewerfrontend"
-                        sh "docker rmi ${DOCKERHUB_USER}/codeeditorfrontend"
-                        sh "docker rmi ${DOCKERHUB_USER}/codeeditorbackend"
+                        // sh "docker rmi ${DOCKERHUB_USER}/eurekaregistry"
+                        // sh "docker rmi ${DOCKERHUB_USER}/apigateway"
+                        // sh "docker rmi ${DOCKERHUB_USER}/interviewerservice"
+                        // sh "docker rmi ${DOCKERHUB_USER}/candidateservice"
+                        // sh "docker rmi ${DOCKERHUB_USER}/candidatefrontend"
+                        // sh "docker rmi ${DOCKERHUB_USER}/interviewerfrontend"
+                        // sh "docker rmi ${DOCKERHUB_USER}/codeeditorfrontend"
+                        // sh "docker rmi ${DOCKERHUB_USER}/codeeditorbackend"
                     }
                 }
         stage('Run ansible playbook'){
