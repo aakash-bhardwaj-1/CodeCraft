@@ -14,7 +14,6 @@
     - name: Run docker compose up command
       become: true
       docker_compose:
-        env_file: ./docker_namespace.env
         project_src: ./
         state: present
         pull: yes
