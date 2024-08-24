@@ -1,1 +1,9 @@
+use only one of these. Both are same.
 localhost ansible_user=aakash ansible_ssh_pass=026452 ansible_become_pass=026452
+
+
+localhost:
+  ansible_connection: local
+  ansible_python_interpreter: /usr/bin/python3
+  ansible_become: true
+  ansible_become_pass: 026452
